@@ -1,0 +1,1705 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Scripture Bridge — English ↔ Japanese (Book Site)</title>
+<meta name="theme-color" content="#f6f2ea"/>
+<style>
+  :root{
+    --bg1:#fbf6ee; --bg2:#eef3fb;
+    --card:rgba(255,255,255,.78);
+    --ink:rgba(0,0,0,.86); --ink2:rgba(0,0,0,.68);
+    --stroke:rgba(0,0,0,.10); --shadow:rgba(0,0,0,.06);
+    --accent:#1f4f7a; --accent2:#7a1f3d;
+    --danger:#b3261e;
+    --radius:18px;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --serif: ui-serif, "New York", "Iowan Old Style", "Palatino", Georgia, serif;
+    --sans: ui-sans-serif, -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; color:var(--ink); font-family:var(--sans);
+    background: radial-gradient(1100px 600px at 15% 10%, var(--bg1), transparent 70%),
+                radial-gradient(1200px 800px at 85% 0%, var(--bg2), transparent 75%),
+                linear-gradient(135deg, var(--bg1), var(--bg2));
+    overflow-x:hidden;
+  }
+  .noise::before{
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.16;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+  .shell{max-width:1100px;margin:0 auto;padding:20px 16px 120px;}
+  header.topbar{
+    position:sticky; top:0; z-index:30; padding:12px 12px;
+    backdrop-filter: blur(10px);
+    background:rgba(251,246,238,.62);
+    border-bottom:1px solid var(--stroke);
+  }
+  .topbar-inner{
+    max-width:1100px; margin:0 auto; padding:0 4px;
+    display:flex; gap:12px; align-items:center; justify-content:space-between;
+  }
+  .brand{display:flex; gap:10px; align-items:center; min-width:240px;}
+  .seal{
+    width:34px;height:34px;border-radius:10px;
+    background:linear-gradient(135deg, rgba(122,31,61,.14), rgba(31,79,122,.12));
+    border:1px solid var(--stroke);
+    box-shadow: 0 10px 22px var(--shadow);
+    display:grid;place-items:center;
+    font-family:var(--serif);
+  }
+  .brand h1{margin:0;font-size:14px;letter-spacing:.02em}
+  .brand .sub{font-size:12px;color:var(--ink2)}
+  nav.booknav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
+  .tab{
+    border:1px solid var(--stroke);
+    background:rgba(255,255,255,.55);
+    border-radius:999px;
+    padding:8px 12px;
+    font-size:12px;
+    cursor:pointer;
+    display:flex; gap:8px; align-items:center;
+  }
+  .tab[aria-current="page"]{background:rgba(31,79,122,.10);border-color:rgba(31,79,122,.22);}
+  .tab .dot{width:8px;height:8px;border-radius:99px;background:rgba(0,0,0,.18);}
+  .tab[aria-current="page"] .dot{background:rgba(31,79,122,.62);}
+  .btn{
+    border:1px solid var(--stroke);
+    background:rgba(255,255,255,.62);
+    border-radius:12px;
+    padding:10px 12px;
+    font-size:13px;
+    cursor:pointer;
+    box-shadow: 0 10px 22px var(--shadow);
+  }
+  .btn.primary{background:rgba(31,79,122,.12);border-color:rgba(31,79,122,.22);}
+  .btn.danger{background:rgba(179,38,30,.10);border-color:rgba(179,38,30,.22);}
+  .btn:active{transform:translateY(1px)}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .col{flex:1 1 320px}
+  .card{
+    background:var(--card);
+    border:1px solid var(--stroke);
+    border-radius:var(--radius);
+    box-shadow: 0 14px 32px var(--shadow);
+    padding:14px;
+  }
+  .card h2{margin:0 0 8px;font-size:16px;letter-spacing:.01em;}
+  .muted{color:var(--ink2)}
+  .small{font-size:12px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{
+    font-size:12px;padding:6px 10px;border-radius:999px;
+    border:1px solid var(--stroke);background:rgba(255,255,255,.55);color:var(--ink2);
+  }
+  .grid{display:grid;grid-template-columns: repeat(12, minmax(0,1fr));gap:12px;}
+  .span6{grid-column: span 6;}
+  .span8{grid-column: span 8;}
+  .span4{grid-column: span 4;}
+  .span12{grid-column: span 12;}
+  @media (max-width: 860px){.span6,.span8,.span4{grid-column: span 12;} .brand{min-width:unset}}
+  label{font-size:12px;color:var(--ink2);display:block;margin:8px 0 6px}
+  input, textarea, select{
+    width:100%; border:1px solid var(--stroke);
+    background:rgba(255,255,255,.7);
+    border-radius:12px;
+    padding:10px 12px;
+    font-size:14px;
+    outline:none;
+  }
+  textarea{min-height:120px;resize:vertical}
+  input:focus, textarea:focus, select:focus{
+    border-color:rgba(31,79,122,.32);
+    box-shadow:0 0 0 4px rgba(31,79,122,.10);
+  }
+  main{margin-top:18px}
+  section.page{display:none; animation: fade .18s ease-out}
+  section.page.active{display:block}
+  @keyframes fade{from{opacity:.5; transform:translateY(2px)}to{opacity:1; transform:translateY(0)}}
+  .howto{
+    border:1px dashed rgba(0,0,0,.14);
+    background:rgba(255,255,255,.50);
+    border-radius:14px;
+    padding:10px 12px;
+    margin:10px 0 0;
+  }
+  .howto summary{cursor:pointer; user-select:none; font-weight:600;}
+  .howto p{margin:8px 0 0; color:var(--ink2); font-size:13px; line-height:1.45}
+  .list{display:flex; flex-direction:column; gap:10px}
+  .item{border:1px solid var(--stroke);background:rgba(255,255,255,.58);border-radius:16px;padding:12px;}
+  .item .top{display:flex; gap:10px; justify-content:space-between; align-items:flex-start;}
+  .item .title{font-weight:700}
+  .item .meta{font-size:12px; color:var(--ink2); display:flex; gap:10px; flex-wrap:wrap}
+  .item .actions{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+  .hr{height:1px; background:var(--stroke); margin:10px 0}
+  .calli-wrap{display:grid; grid-template-columns: 1.2fr .8fr; gap:12px}
+  @media (max-width: 900px){ .calli-wrap{grid-template-columns:1fr} }
+  canvas#brushCanvas{
+    width:100%; height:460px;
+    border-radius:16px;border:1px solid var(--stroke);
+    background:
+      linear-gradient(to right, rgba(0,0,0,.04) 1px, transparent 1px) 0 0 / 26px 26px,
+      linear-gradient(to bottom, rgba(0,0,0,.04) 1px, transparent 1px) 0 0 / 26px 26px,
+      rgba(255,255,255,.72);
+  }
+  .guide-grid{display:grid;grid-template-columns: repeat(3, minmax(0,1fr));gap:10px;}
+  .guide{border:1px solid var(--stroke);border-radius:14px;background:rgba(255,255,255,.56);padding:10px;cursor:pointer;}
+  .guide .jp{font-size:28px; font-family:var(--serif)}
+  .guide .en{font-size:12px;color:var(--ink2)}
+  .guide small{color:var(--ink2)}
+  .stroke-box{
+    width:100%; aspect-ratio: 1 / 1;
+    border-radius:14px;border:1px solid var(--stroke);
+    background:
+      linear-gradient(to right, rgba(0,0,0,.05) 1px, transparent 1px) 0 0 / 32px 32px,
+      linear-gradient(to bottom, rgba(0,0,0,.05) 1px, transparent 1px) 0 0 / 32px 32px,
+      rgba(255,255,255,.72);
+    display:grid; place-items:center;
+    font-size:44px; font-family:var(--serif);
+  }
+  #map{
+    width:100%; height:520px;
+    border-radius:16px;border:1px solid var(--stroke);
+    overflow:hidden;background:rgba(255,255,255,.65);
+    position:relative;
+  }
+  #map iframe{width:100%;height:100%;border:0;filter:saturate(0.96) contrast(0.98);}
+  .pin{
+    position:absolute;width:12px;height:12px;border-radius:999px;
+    background:rgba(122,31,61,.78);
+    box-shadow:0 10px 22px rgba(122,31,61,.18);
+    transform: translate(-50%, -50%);
+    border:2px solid rgba(255,255,255,.9);
+    cursor:pointer;
+  }
+  .kbd{
+    position:fixed; left:0; right:0; bottom:0; z-index:80;
+    transform: translateY(110%); transition: transform .18s ease-out;
+    background: rgba(251,246,238,.92);
+    border-top:1px solid var(--stroke);
+    backdrop-filter: blur(10px);
+    padding:10px 10px calc(10px + env(safe-area-inset-bottom));
+  }
+  .kbd.show{ transform: translateY(0); }
+  .kbd-top{display:flex; gap:10px; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto;}
+  .kbd-title{font-size:12px;color:var(--ink2)}
+  .kbd-mode{display:flex; gap:8px; flex-wrap:wrap}
+  .kbd-mode .btn{padding:8px 10px; border-radius:999px; box-shadow:none}
+  .kbd-grid{max-width:1100px; margin:10px auto 0; display:grid; gap:8px;}
+  .kbd-grid.en{grid-template-columns: repeat(10, minmax(0,1fr));}
+  .kbd-grid.ja{grid-template-columns: repeat(10, minmax(0,1fr));}
+  .key{
+    user-select:none;
+    border:1px solid var(--stroke);
+    background: rgba(255,255,255,.72);
+    border-radius:12px;
+    padding:10px 0;
+    text-align:center;
+    font-size:14px;
+    cursor:pointer;
+  }
+  .key:active{transform:translateY(1px)}
+  .key.alt{background: rgba(31,79,122,.10); border-color: rgba(31,79,122,.22);}
+  .key.danger{background: rgba(179,38,30,.10); border-color: rgba(179,38,30,.22);}
+  .key.wide{grid-column: span 2;}
+  .key.wider{grid-column: span 3;}
+  .key.widest{grid-column: span 4;}
+  footer{
+    position:fixed; left:0; right:0; bottom:0;
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+    border-top:1px solid var(--stroke);
+    background:rgba(251,246,238,.68);
+    backdrop-filter: blur(10px);
+    z-index:20;
+  }
+  .footer-inner{
+    max-width:1100px; margin:0 auto;
+    display:flex; gap:10px; align-items:center; justify-content:space-between;
+    flex-wrap:wrap;
+  }
+  .statusline{font-size:12px; color:var(--ink2)}
+
+  /* ===== Theme backgrounds (user-selectable) ===== */
+  body.theme-washi{
+    /* default already via body background; keep noise overlay */
+  }
+  body.theme-earth{
+    background:
+      radial-gradient(1000px 700px at 20% 10%, #f4efe4, transparent 70%),
+      radial-gradient(1200px 900px at 80% 0%, #e6efe8, transparent 75%),
+      linear-gradient(135deg, #f4efe4, #e6efe8);
+  }
+  body.theme-mono{
+    background:
+      radial-gradient(1100px 700px at 15% 10%, #f1f1f1, transparent 70%),
+      radial-gradient(1200px 900px at 85% 0%, #e9e9e9, transparent 75%),
+      linear-gradient(135deg, #f3f3f3, #e7e7e7);
+    filter: saturate(0.15);
+  }
+  body.theme-inkwash{
+    background:
+      radial-gradient(900px 600px at 18% 12%, #2a2a2a, transparent 70%),
+      radial-gradient(1200px 900px at 82% 0%, #111, transparent 75%),
+      linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    color: rgba(255,255,255,.90);
+  }
+  body.theme-inkwash header.topbar,
+  body.theme-inkwash footer{
+    background: rgba(20,20,20,.55);
+    border-color: rgba(255,255,255,.10);
+  }
+  body.theme-inkwash .card,
+  body.theme-inkwash .item,
+  body.theme-inkwash input,
+  body.theme-inkwash textarea,
+  body.theme-inkwash select{
+    background: rgba(255,255,255,.07);
+    border-color: rgba(255,255,255,.12);
+    color: rgba(255,255,255,.92);
+  }
+  body.theme-inkwash .muted,
+  body.theme-inkwash .small,
+  body.theme-inkwash .meta{
+    color: rgba(255,255,255,.70) !important;
+  }
+  body.theme-inkwash .tab{
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.14);
+    color: rgba(255,255,255,.90);
+  }
+  body.theme-inkwash .tab[aria-current="page"]{
+    background: rgba(180,210,255,.10);
+    border-color: rgba(180,210,255,.22);
+  }
+  body.theme-inkwash .chip{
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.14);
+    color: rgba(255,255,255,.75);
+  }
+  body.theme-inkwash canvas#brushCanvas{
+    background:
+      linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px) 0 0 / 26px 26px,
+      linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px) 0 0 / 26px 26px,
+      rgba(255,255,255,.06);
+  }
+
+  /* Bamboo (subtle) – tiled SVG pattern */
+  body.theme-bamboo{
+    background:
+      radial-gradient(1100px 700px at 15% 10%, rgba(244,239,228,.92), transparent 70%),
+      radial-gradient(1200px 900px at 85% 0%, rgba(232,241,234,.88), transparent 75%),
+      linear-gradient(135deg, #f4efe4, #e7f0ea),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Crect width='420' height='420' fill='none'/%3E%3Cg opacity='.22'%3E%3Cpath d='M70 10 C55 70 55 120 70 180 C85 240 85 300 70 410' stroke='%232a3a2f' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M70 85 L110 75' stroke='%232a3a2f' stroke-width='4' stroke-linecap='round' opacity='.6'/%3E%3Cpath d='M70 210 L112 200' stroke='%232a3a2f' stroke-width='4' stroke-linecap='round' opacity='.6'/%3E%3Cpath d='M70 310 L112 302' stroke='%232a3a2f' stroke-width='4' stroke-linecap='round' opacity='.6'/%3E%3C/g%3E%3Cg opacity='.18'%3E%3Cpath d='M250 0 C235 85 238 140 252 210 C265 280 265 335 250 420' stroke='%232a3a2f' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M250 120 L210 108' stroke='%232a3a2f' stroke-width='4' stroke-linecap='round' opacity='.6'/%3E%3Cpath d='M250 245 L210 235' stroke='%232a3a2f' stroke-width='4' stroke-linecap='round' opacity='.6'/%3E%3Cpath d='M250 350 L210 340' stroke='%232a3a2f' stroke-width='4' stroke-linecap='round' opacity='.6'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: auto, auto, auto, 420px 420px;
+    background-blend-mode: normal, normal, normal, multiply;
+  }
+
+  /* Custom uploaded background layer */
+  body.has-custom-bg{
+    background-image: var(--custom-bg), none;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  /* Settings sheet */
+  .sheet{
+    position: fixed; inset: 0;
+    display:none;
+    background: rgba(0,0,0,.28);
+    backdrop-filter: blur(6px);
+    z-index: 120;
+    padding: 18px;
+  }
+  .sheet.show{display:block;}
+  .sheet .panel{
+    max-width: 760px;
+    margin: 8vh auto 0;
+    background: rgba(255,255,255,.86);
+    border: 1px solid var(--stroke);
+    border-radius: 20px;
+    box-shadow: 0 22px 60px rgba(0,0,0,.18);
+    overflow:hidden;
+  }
+  .sheet .panel header{
+    padding:14px 14px 10px;
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:1px solid var(--stroke);
+    background: rgba(255,255,255,.70);
+  }
+  .sheet .panel header h3{margin:0;font-size:14px;letter-spacing:.01em}
+  .sheet .panel .body{padding:14px;}
+  .sheet .panel .rowline{
+    display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end;
+    margin-top:10px;
+  }
+  .sheet .panel .hint{font-size:12px;color:var(--ink2);line-height:1.45}
+  body.theme-inkwash .sheet .panel{
+    background: rgba(20,20,20,.82);
+    border-color: rgba(255,255,255,.12);
+    color: rgba(255,255,255,.90);
+  }
+  body.theme-inkwash .sheet .panel header{
+    background: rgba(20,20,20,.70);
+    border-color: rgba(255,255,255,.10);
+  }
+
+</style>
+</head>
+<body class="noise">
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="seal">橋</div>
+      <div>
+        <h1>Scripture Bridge — English ↔ 日本語</h1>
+        <div class="sub">A calm “book site” for study, speech, calligraphy, and journaling in Japan.</div>
+      </div>
+    </div>
+    <nav class="booknav" aria-label="Book navigation">
+      <button class="tab" data-go="cover" aria-current="page"><span class="dot"></span>Cover</button>
+      <button class="tab" data-go="study"><span class="dot"></span>Study</button>
+      <button class="tab" data-go="phrases"><span class="dot"></span>Phrases</button>
+      <button class="tab" data-go="calligraphy"><span class="dot"></span>Calligraphy</button>
+      <button class="tab" data-go="record"><span class="dot"></span>Record</button>
+      <button class="tab" data-go="progress"><span class="dot"></span>Progress</button>
+      <button class="tab" data-go="japan"><span class="dot"></span>Japan</button>
+    </nav>
+  </div>
+</header>
+
+<div class="shell">
+  <main>
+    <section id="page-cover" class="page active">
+      <div class="grid">
+        <div class="card span12">
+          <h2>Welcome — ようこそ</h2>
+          <p class="muted" style="margin:6px 0 0; line-height:1.55">
+            Seven chapters, one bridge: bilingual scripture study (EN/JA), speaking practice, brush calligraphy, and a Japan map journal.
+            Everything saves locally on your device.
+          </p>
+          <div class="chips" style="margin-top:10px">
+            <span class="chip">Offline saving</span>
+            <span class="chip">On-screen English & Japanese keyboards</span>
+            <span class="chip">Audio + Video</span>
+            <span class="chip">Calligraphy guides</span>
+            <span class="chip">Japan map journal</span>
+          </div>
+          <details class="howto" open>
+            <summary>Quick Start (tap to collapse)</summary>
+            <p>
+              1) Go to <b>Study</b> and create a card. <br/>
+              2) Tap <b>Keyboard</b> (bottom) to type with EN or かな. <br/>
+              3) Practice: <b>Speak</b> + <b>Record</b>. <br/>
+              4) Try <b>Calligraphy</b> guides (kana + common words). <br/>
+              5) Drop travel pins on <b>Japan</b> and attach photos/notes. <br/>
+              6) Back up via <b>Progress → Export</b>.
+            </p>
+          </details>
+          <div class="row" style="margin-top:12px">
+            <button class="btn primary" data-go="study">Start Study</button>
+            <button class="btn" data-go="calligraphy">Practice Calligraphy</button>
+            <button class="btn" data-go="japan">Open Japan Map Journal</button>
+          </div>
+        </div>
+
+        <div class="card span6">
+          <h2>On-screen Keyboards</h2>
+          <p class="muted" style="margin:6px 0 0; line-height:1.55">
+            Tap a text field, then tap <b>Keyboard</b> at the bottom. Choose <b>EN</b> or <b>かな</b> (hiragana) / <b>カナ</b> (katakana).
+          </p>
+        </div>
+
+        <div class="card span6">
+          <h2>Local-first Storage</h2>
+          <p class="muted" style="margin:6px 0 0; line-height:1.55">
+            Cards and phrases use LocalStorage. Pins and media (audio/video/photos) use IndexedDB for persistence.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-study" class="page">
+      <div class="grid">
+        <div class="card span12">
+          <h2>Study — Scripture Cards</h2>
+          <p class="muted" style="margin:6px 0 0">Create bilingual cards, record your voice, and keep notes.</p>
+          <details class="howto">
+            <summary>Instructions</summary>
+            <p>
+              1) Fill in English and Japanese (romaji optional).<br/>
+              2) Tap <b>Add Card</b>. Cards appear below.<br/>
+              3) Use <b>Speak EN/JA</b> for text-to-speech.<br/>
+              4) Use <b>Record EN/JA</b> to save pronunciation audio per card.
+            </p>
+          </details>
+        </div>
+
+        <div class="card span6">
+          <h2>Create Card</h2>
+          <label>Title</label>
+          <input id="cTitle" placeholder="e.g., John 3:16 / ヨハネ 3:16" data-kb="en"/>
+          <label>English</label>
+          <textarea id="cEN" placeholder="English passage..." data-kb="en"></textarea>
+          <div class="row">
+            <div class="col"><div class="small muted" id="cENCount">0 words</div></div>
+            <div class="col"><button class="btn" data-showkbd="en">Keyboard (EN)</button></div>
+          </div>
+
+          <label>Japanese</label>
+          <textarea id="cJA" placeholder="日本語…" data-kb="ja"></textarea>
+          <div class="row">
+            <div class="col"><div class="small muted" id="cJACount">0 chars</div></div>
+            <div class="col"><button class="btn" data-showkbd="ja">Keyboard (かな)</button></div>
+          </div>
+
+          <label>Romaji (optional)</label>
+          <input id="cRomaji" placeholder="Romaji..." data-kb="en"/>
+          <label>Keywords (comma-separated)</label>
+          <input id="cKeywords" placeholder="peace, hope, prayer..." data-kb="en"/>
+          <div class="small muted" id="cKeywordCount">0 keywords</div>
+          <label>Tags (comma-separated)</label>
+          <input id="cTags" placeholder="gospel, encouragement..." data-kb="en"/>
+          <label>Notes</label>
+          <textarea id="cNotes" placeholder="Notes, cultural context, memory cues..." data-kb="en"></textarea>
+
+          <div class="row" style="margin-top:10px">
+            <button class="btn primary" id="addCardBtn">Add Card</button>
+            <button class="btn danger" id="clearFormBtn">Clear</button>
+          </div>
+        </div>
+
+        <div class="card span6">
+          <h2>Quick Practice</h2>
+          <p class="muted" style="margin:6px 0 0; line-height:1.55">
+            Fast listening/speaking without selecting a card.
+          </p>
+          <label>Quick text (EN)</label>
+          <textarea id="quickEN" placeholder="Type or paste..." data-kb="en"></textarea>
+          <div class="row">
+            <button class="btn" id="speakQuickEN">Speak EN</button>
+            <button class="btn" id="recQuickEN">Record EN</button>
+            <button class="btn" id="playQuickEN" disabled>Play EN</button>
+          </div>
+
+          <label style="margin-top:10px">Quick text (JA)</label>
+          <textarea id="quickJA" placeholder="日本語…" data-kb="ja"></textarea>
+          <div class="row">
+            <button class="btn" id="speakQuickJA">Speak JA</button>
+            <button class="btn" id="recQuickJA">Record JA</button>
+            <button class="btn" id="playQuickJA" disabled>Play JA</button>
+          </div>
+        </div>
+
+        <div class="card span12">
+          <h2>Your Cards</h2>
+          <div class="list" id="cardsList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-phrases" class="page">
+      <div class="grid">
+        <div class="card span12">
+          <h2>Phrases — Friendly Japanese</h2>
+          <p class="muted" style="margin:6px 0 0">A practical deck for warm, respectful communication (with favorites).</p>
+          <details class="howto">
+            <summary>Instructions</summary>
+            <p>Tap <b>Seed Starter Deck</b> to load phrases. Favorite your most-used. Tap <b>Speak</b> to hear Japanese aloud.</p>
+          </details>
+          <div class="row" style="margin-top:10px">
+            <button class="btn primary" id="seedPhrasesBtn">Seed Starter Deck</button>
+          </div>
+        </div>
+
+        <div class="card span6">
+          <h2>New Phrase</h2>
+          <label>Category</label>
+          <select id="pCat"><option>Friendly</option><option>Respectful</option><option>Church</option><option>Daily</option></select>
+          <label>English</label><input id="pEN" placeholder="English..." data-kb="en"/>
+          <label>Japanese</label><input id="pJA" placeholder="日本語…" data-kb="ja"/>
+          <label>Romaji</label><input id="pRomaji" placeholder="Romaji..." data-kb="en"/>
+          <label>Notes</label><textarea id="pNotes" placeholder="Nuance, when to use, politeness..." data-kb="en"></textarea>
+          <div class="row">
+            <button class="btn primary" id="savePhraseBtn">Save Phrase</button>
+            <button class="btn danger" id="clearPhraseFormBtn">Clear</button>
+          </div>
+        </div>
+
+        <div class="card span6">
+          <h2>Your Phrase Deck</h2>
+          <div class="list" id="phrasesList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-calligraphy" class="page">
+      <div class="grid">
+        <div class="card span12">
+          <h2>Calligraphy — 書道 Studio</h2>
+          <p class="muted" style="margin:6px 0 0">Speed-sensitive brush with guides (kana + common words).</p>
+          <details class="howto">
+            <summary>Instructions</summary>
+            <p>
+              Choose a guide tile (right). Slow strokes become thicker, fast strokes thinner.
+              Use <b>Ghost Guide</b> to faintly show the target under your strokes.
+            </p>
+          </details>
+        </div>
+
+        <div class="card span12">
+          <div class="calli-wrap">
+            <div>
+              <div class="row" style="align-items:center; justify-content:space-between">
+                <div class="muted small">Canvas</div>
+                <div class="row">
+                  <button class="btn" id="toggleGhostBtn">Ghost Guide: ON</button>
+                  <button class="btn" id="clearCanvasBtn">Clear</button>
+                  <button class="btn primary" id="exportCanvasBtn">Export PNG</button>
+                </div>
+              </div>
+              <canvas id="brushCanvas" width="1200" height="900"></canvas>
+              <div class="row" style="margin-top:10px">
+                <div class="col"><label>Brush Size</label><input type="range" id="brushSize" min="4" max="36" value="14"/></div>
+                <div class="col"><label>Ink Darkness</label><input type="range" id="inkDark" min="20" max="95" value="82"/></div>
+                <div class="col"><label>Smoothing</label><input type="range" id="smooth" min="0" max="85" value="45"/></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="row" style="align-items:center; justify-content:space-between">
+                <div>
+                  <div class="muted small">Practice Target</div>
+                  <div style="font-size:12px;color:var(--ink2)" id="targetCaption">Tap a guide below.</div>
+                </div>
+                <button class="btn" id="speakTargetBtn">Speak (JA)</button>
+              </div>
+              <div class="stroke-box" id="targetBox">あ</div>
+              <div class="hr"></div>
+              <h2 style="margin:0 0 8px;font-size:14px">Guides</h2>
+              <div class="guide-grid" id="guideGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-record" class="page">
+      <div class="grid">
+        <div class="card span12">
+          <h2>Record — Audio & Video</h2>
+          <p class="muted" style="margin:6px 0 0">Audio/video saved locally (IndexedDB).</p>
+          <details class="howto">
+            <summary>If camera doesn’t work on file:///</summary>
+            <p>Run a local server: <code style="font-family:var(--mono)">python3 -m http.server</code> then open <code style="font-family:var(--mono)">http://localhost:8000</code>.</p>
+          </details>
+        </div>
+
+        <div class="card span6">
+          <h2>Audio Recorder</h2>
+          <label>Language</label>
+          <select id="rLang"><option value="en">English</option><option value="ja">Japanese</option></select>
+          <label>Label (optional)</label>
+          <input id="rLabel" placeholder="e.g., greeting practice" data-kb="en"/>
+          <div class="row" style="margin-top:10px">
+            <button class="btn primary" id="startRecBtn">Start Recording</button>
+            <button class="btn danger" id="stopRecBtn" disabled>Stop</button>
+            <button class="btn" id="playLastRecBtn" disabled>Play Last</button>
+          </div>
+          <div class="small muted" id="recStatus" style="margin-top:8px">Ready.</div>
+        </div>
+
+        <div class="card span6">
+          <h2>Video Recorder</h2>
+          <div class="row" style="margin-top:10px">
+            <input type="file" id="videoInput" accept="video/*" capture="environment"/>
+            <button class="btn danger" id="clearVideosBtn">Clear Saved Videos</button>
+          </div>
+          <div class="small muted" style="margin-top:8px">Use front camera for selfie practice.</div>
+        </div>
+
+        <div class="card span12">
+          <h2>Saved Media</h2>
+          <div class="row">
+            <div class="col">
+              <h2 style="font-size:14px;margin:0 0 8px">Audio Clips</h2>
+              <div class="list" id="audioList"></div>
+            </div>
+            <div class="col">
+              <h2 style="font-size:14px;margin:0 0 8px">Video Clips</h2>
+              <div class="list" id="videoList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-progress" class="page">
+      <div class="grid">
+        <div class="card span12">
+          <h2>Progress — 静かな成長</h2>
+          <p class="muted" style="margin:6px 0 0">Subtle metrics: word counts, minutes, streak, and activity.</p>
+          <details class="howto">
+            <summary>Instructions</summary>
+            <p>Export backs up cards/phrases/pins/logs (media index only). Import restores those.</p>
+          </details>
+          <div class="row" style="margin-top:10px">
+            <button class="btn primary" id="exportBtn">Export Book</button>
+            <label class="btn" style="display:inline-flex; align-items:center; gap:10px; cursor:pointer">
+              Import Book
+              <input type="file" id="importInput" accept="application/json" style="display:none"/>
+            </label>
+            <button class="btn danger" id="wipeBtn">Wipe Local Data</button>
+          </div>
+        </div>
+
+        <div class="card span6">
+          <h2>Summary</h2>
+          <div class="list">
+            <div class="item"><div class="meta">Cards</div><div class="title" id="statCards">0</div></div>
+            <div class="item"><div class="meta">Phrases</div><div class="title" id="statPhrases">0</div></div>
+            <div class="item"><div class="meta">Unique Keywords</div><div class="title" id="statKeywords">0</div></div>
+            <div class="item"><div class="meta">Practice Minutes (estimate)</div><div class="title" id="statMinutes">0</div></div>
+            <div class="item"><div class="meta">Day Streak</div><div class="title" id="statStreak">0</div></div>
+          </div>
+        </div>
+
+        <div class="card span6">
+          <h2>Activity</h2>
+          <div class="list" id="activityList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-japan" class="page">
+      <div class="grid">
+        <div class="card span12">
+          <h2>Japan — Map & Photo Journal</h2>
+          <p class="muted" style="margin:6px 0 0">Click the map to drop pins. Add notes and photos.</p>
+          <details class="howto">
+            <summary>Instructions</summary>
+            <p>Click map area to create a pin (approx). Select a pin to edit notes and attach photos. Saved locally.</p>
+          </details>
+        </div>
+
+        <div class="card span8">
+          <h2>Map</h2>
+          <div id="map">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=122.4%2C24.0%2C146.3%2C46.8&amp;layer=mapnik"></iframe>
+          </div>
+          <div class="small muted" style="margin-top:8px">Map tiles load from the web; pins and journaling remain local.</div>
+        </div>
+
+        <div class="card span4">
+          <h2>Pin Journal</h2>
+          <div class="muted small" id="pinHint">Click the map area to create a pin.</div>
+          <div class="hr"></div>
+          <label>Selected Pin Title</label>
+          <input id="pinTitle" placeholder="e.g., Kyoto — 清水寺" data-kb="en"/>
+          <label>Notes</label>
+          <textarea id="pinNotes" placeholder="What happened? What did you learn?" data-kb="en"></textarea>
+          <label>Attach Photos</label>
+          <input type="file" id="pinPhotos" accept="image/*" multiple />
+          <div class="row" style="margin-top:10px">
+            <button class="btn primary" id="savePinBtn">Save Pin</button>
+            <button class="btn danger" id="deletePinBtn" disabled>Delete Pin</button>
+          </div>
+          <div class="hr"></div>
+          <h2 style="font-size:14px;margin:0 0 8px">Pins</h2>
+          <div class="list" id="pinList"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="statusline" id="statusLine">Ready.</div>
+    <div class="row">
+      <button class="btn" id="kbdToggleBtn">Keyboard</button>
+      <button class="btn" id="kbdHideBtn">Hide</button>
+    </div>
+      <div class="row">
+        <button class="btn" id="openSettingsBtn">Background</button>
+      </div>
+  </div>
+</footer>
+
+<div class="kbd" id="kbd">
+  <div class="kbd-top">
+    <div class="kbd-title">On-screen Keyboard</div>
+    <div class="kbd-mode">
+      <button class="btn" id="modeEN">EN</button>
+      <button class="btn" id="modeJA">かな</button>
+      <button class="btn" id="modeKATA">カナ</button>
+      <button class="btn danger" id="kbdBack">⌫</button>
+      <button class="btn" id="kbdSpace">Space</button>
+      <button class="btn" id="kbdEnter">Enter</button>
+      <button class="btn" id="kbdClose">Close</button>
+    </div>
+  </div>
+  <div class="kbd-grid en" id="kbdGrid"></div>
+</div>
+
+<!-- Settings Sheet -->
+<div class="sheet" id="settingsSheet" aria-hidden="true">
+  <div class="panel" role="dialog" aria-modal="true" aria-label="Background settings">
+    <header>
+      <h3>Background & Mood</h3>
+      <button class="btn" id="closeSettingsBtn">Close</button>
+    </header>
+    <div class="body">
+      <div class="card" style="box-shadow:none">
+        <h2 style="margin:0 0 6px;font-size:14px">Choose a theme</h2>
+        <div class="rowline">
+          <div class="col" style="flex:1 1 240px">
+            <label>Theme</label>
+            <select id="themeSelect">
+              <option value="theme-washi">Washi (default)</option>
+              <option value="theme-bamboo">Bamboo (earth tone)</option>
+              <option value="theme-earth">Earth (soft)</option>
+              <option value="theme-mono">Monochrome (faded)</option>
+              <option value="theme-inkwash">Ink Wash (dark)</option>
+            </select>
+            <div class="hint">Ink Wash flips the UI to a night-friendly palette.</div>
+          </div>
+
+          <div class="col" style="flex:1 1 240px">
+            <label>Custom background image</label>
+            <input type="file" id="bgUpload" accept="image/*"/>
+            <div class="hint">Upload a subtle bamboo photo, paper texture, or grayscale image. Stored locally.</div>
+          </div>
+        </div>
+
+        <div class="rowline">
+          <button class="btn primary" id="applyThemeBtn">Apply</button>
+          <button class="btn" id="clearCustomBgBtn">Remove Custom Background</button>
+          <button class="btn danger" id="resetThemeBtn">Reset</button>
+        </div>
+
+        <details class="howto" style="margin-top:12px">
+          <summary>Best results</summary>
+          <p>
+            Choose images with low contrast and soft tones (washi paper, bamboo, mist, ink wash).
+            If readability drops, switch back to Washi or Earth.
+          </p>
+        </details>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+/* =============================
+   Background themes (local)
+============================= */
+const THEME_KEY = "sb_theme";
+const CUSTOM_BG_KEY = "sb_custom_bg"; // data URL (can be large; keep images modest)
+function applyThemeClass(themeClass){
+  const body = document.body;
+  ["theme-washi","theme-bamboo","theme-earth","theme-mono","theme-inkwash"].forEach(c=>body.classList.remove(c));
+  body.classList.add(themeClass || "theme-washi");
+  if(body.classList.contains("theme-inkwash")){
+    body.style.setProperty("--ink","rgba(255,255,255,.92)");
+    body.style.setProperty("--ink2","rgba(255,255,255,.70)");
+    body.style.setProperty("--stroke","rgba(255,255,255,.12)");
+  } else {
+    body.style.removeProperty("--ink");
+    body.style.removeProperty("--ink2");
+    body.style.removeProperty("--stroke");
+  }
+}
+function applyCustomBg(dataUrl){
+  const body = document.body;
+  if(dataUrl){
+    body.classList.add("has-custom-bg");
+    body.style.setProperty("--custom-bg", `url("${dataUrl}")`);
+    localStorage.setItem(CUSTOM_BG_KEY, dataUrl);
+  } else {
+    body.classList.remove("has-custom-bg");
+    body.style.removeProperty("--custom-bg");
+    localStorage.removeItem(CUSTOM_BG_KEY);
+  }
+}
+function loadTheme(){
+  const t = localStorage.getItem(THEME_KEY) || "theme-washi";
+  applyThemeClass(t);
+  const bg = localStorage.getItem(CUSTOM_BG_KEY);
+  if(bg) applyCustomBg(bg);
+}
+
+const $ = (sel, root=document)=>root.querySelector(sel);
+const $$ = (sel, root=document)=>Array.from(root.querySelectorAll(sel));
+const nowISO = ()=> new Date().toISOString();
+const dayKey = (d)=> new Date(d).toISOString().slice(0,10);
+const wordCount = (s)=> (s||"").trim().split(/\s+/).filter(Boolean).length;
+const keywordCount = (csv)=> (csv||"").split(",").map(x=>x.trim()).filter(Boolean).length;
+function setStatus(msg){ $("#statusLine").textContent = msg; }
+
+const DB_NAME="sb_booksite_v1", DB_VER=1; let db;
+function idbOpen(){
+  return new Promise((resolve,reject)=>{
+    const req = indexedDB.open(DB_NAME, DB_VER);
+    req.onupgradeneeded = (e)=>{
+      const db = e.target.result;
+      if(!db.objectStoreNames.contains("media")){
+        const s = db.createObjectStore("media",{keyPath:"id"});
+        s.createIndex("type","type",{unique:false});
+        s.createIndex("createdAt","createdAt",{unique:false});
+      }
+      if(!db.objectStoreNames.contains("pins")){
+        const p = db.createObjectStore("pins",{keyPath:"id"});
+        p.createIndex("createdAt","createdAt",{unique:false});
+      }
+    };
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+function idbPut(store, value){
+  return new Promise((resolve,reject)=>{
+    const tx = db.transaction(store,"readwrite");
+    tx.objectStore(store).put(value);
+    tx.oncomplete=()=>resolve(true);
+    tx.onerror=()=>reject(tx.error);
+  });
+}
+function idbGet(store, key){
+  return new Promise((resolve,reject)=>{
+    const tx = db.transaction(store,"readonly");
+    const req = tx.objectStore(store).get(key);
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+function idbDelete(store, key){
+  return new Promise((resolve,reject)=>{
+    const tx = db.transaction(store,"readwrite");
+    tx.objectStore(store).delete(key);
+    tx.oncomplete=()=>resolve(true);
+    tx.onerror=()=>reject(tx.error);
+  });
+}
+function idbAll(store){
+  return new Promise((resolve,reject)=>{
+    const tx = db.transaction(store,"readonly");
+    const req = tx.objectStore(store).getAll();
+    req.onsuccess=()=>resolve(req.result||[]);
+    req.onerror=()=>reject(req.error);
+  });
+}
+
+const LS = { get(k,f){ try{return JSON.parse(localStorage.getItem(k)) ?? f}catch{return f}}, set(k,v){localStorage.setItem(k, JSON.stringify(v));} };
+const KEYS = { cards:"sb_cards", phrases:"sb_phrases", logs:"sb_logs" };
+function logEvent(type, seconds=0){
+  const logs = LS.get(KEYS.logs, []);
+  logs.push({id:crypto.randomUUID(), type, seconds, at: nowISO()});
+  LS.set(KEYS.logs, logs);
+  refreshProgress();
+}
+
+function go(page){
+  $$(".page").forEach(s=>s.classList.remove("active"));
+  $("#page-"+page).classList.add("active");
+  $$(".tab").forEach(t=>{
+    const on = t.dataset.go===page;
+    t.setAttribute("aria-current", on ? "page" : "false");
+  });
+  setStatus("Opened: "+page);
+  location.hash = page;
+}
+$$("[data-go]").forEach(btn=>btn.addEventListener("click", ()=>go(btn.dataset.go)));
+window.addEventListener("hashchange", ()=>{
+  const p = (location.hash||"#cover").slice(1);
+  if($("#page-"+p)) go(p);
+});
+if(location.hash && $("#page-"+location.hash.slice(1))) go(location.hash.slice(1));
+
+let kbd=$("#kbd"), kbdGrid=$("#kbdGrid"), activeEl=null, kbdMode="en";
+function setMode(mode){ kbdMode=mode; renderKeyboard(); setStatus("Keyboard: "+(mode==="en"?"English":(mode==="hira"?"Hiragana":"Katakana"))); }
+function showKeyboard(){ kbd.classList.add("show"); renderKeyboard(); }
+function hideKeyboard(){ kbd.classList.remove("show"); }
+function insertText(text){
+  if(!activeEl) return;
+  const start = activeEl.selectionStart ?? activeEl.value.length;
+  const end = activeEl.selectionEnd ?? activeEl.value.length;
+  const v = activeEl.value ?? "";
+  activeEl.value = v.slice(0,start) + text + v.slice(end);
+  const pos = start + text.length;
+  activeEl.setSelectionRange?.(pos,pos);
+  activeEl.dispatchEvent(new Event("input",{bubbles:true}));
+  activeEl.focus?.();
+}
+function backspace(){
+  if(!activeEl) return;
+  const start = activeEl.selectionStart ?? activeEl.value.length;
+  const end = activeEl.selectionEnd ?? activeEl.value.length;
+  const v = activeEl.value ?? "";
+  if(start===end && start>0){
+    activeEl.value = v.slice(0,start-1)+v.slice(end);
+    activeEl.setSelectionRange?.(start-1,start-1);
+  }else{
+    activeEl.value = v.slice(0,start)+v.slice(end);
+    activeEl.setSelectionRange?.(start,start);
+  }
+  activeEl.dispatchEvent(new Event("input",{bubbles:true}));
+  activeEl.focus?.();
+}
+function renderKeyboard(){
+  kbdGrid.className = "kbd-grid " + (kbdMode==="en" ? "en" : "ja");
+  kbdGrid.innerHTML = "";
+  const addKey=(label,val=label,cls="key")=>{
+    const d=document.createElement("div");
+    d.className=cls; d.textContent=label;
+    d.addEventListener("click", ()=>insertText(val));
+    kbdGrid.appendChild(d);
+  };
+  if(kbdMode==="en"){
+    [["Q","W","E","R","T","Y","U","I","O","P"],
+     ["A","S","D","F","G","H","J","K","L","'"],
+     ["Z","X","C","V","B","N","M",",",".","?"]].flat().forEach(k=>addKey(k,k));
+    addKey("Space"," ","key alt widest");
+    addKey("—","—"); addKey("…","…"); addKey("“","“"); addKey("”","”");
+  }else{
+    const hira=["あ","い","う","え","お","か","き","く","け","こ","さ","し","す","せ","そ","た","ち","つ","て","と","な","に","ぬ","ね","の","は","ひ","ふ","へ","ほ","ま","み","む","め","も","や","ゆ","よ","ら","り","る","れ","ろ","わ","を","ん","ー","。","、","？","ゃ","ゅ","ょ","っ","゛","゜","「","」","・"," "];
+    const kataMap=(ch)=>{ const code=ch.charCodeAt(0); if(code>=0x3041 && code<=0x3096) return String.fromCharCode(code+0x60); return ch; };
+    const arr = (kbdMode==="hira" ? hira : hira.map(kataMap));
+    arr.forEach(k=>{
+      if(k===" ") addKey("Space"," ","key alt widest");
+      else addKey(k,k,"key");
+    });
+  }
+}
+$("#modeEN").addEventListener("click", ()=>setMode("en"));
+$("#modeJA").addEventListener("click", ()=>setMode("hira"));
+$("#modeKATA").addEventListener("click", ()=>setMode("kata"));
+$("#kbdBack").addEventListener("click", backspace);
+$("#kbdSpace").addEventListener("click", ()=>insertText(" "));
+$("#kbdEnter").addEventListener("click", ()=>insertText("\n"));
+$("#kbdClose").addEventListener("click", hideKeyboard);
+$("#kbdToggleBtn").addEventListener("click", showKeyboard);
+$("#kbdHideBtn").addEventListener("click", hideKeyboard);
+$$("[data-showkbd]").forEach(b=>b.addEventListener("click", ()=>{ setMode(b.dataset.showkbd==="ja"?"hira":"en"); showKeyboard(); }));
+document.addEventListener("focusin",(e)=>{
+  const t=e.target;
+  if(t && (t.tagName==="INPUT"||t.tagName==="TEXTAREA")){
+    activeEl=t;
+    const kb=t.dataset.kb;
+    if(kb==="ja") setMode("hira"); else if(kb==="en") setMode("en");
+  }
+});
+
+function speak(text, lang){
+  const s=(text||"").trim(); if(!s) return;
+  const u=new SpeechSynthesisUtterance(s); u.lang=lang; u.rate=0.92; speechSynthesis.speak(u);
+}
+
+function getCards(){ return LS.get(KEYS.cards, []); }
+function setCards(v){ LS.set(KEYS.cards, v); }
+function clearCardForm(){ ["cTitle","cEN","cJA","cRomaji","cKeywords","cTags","cNotes"].forEach(id=>$("#"+id).value=""); updateCounts(); }
+function updateCounts(){
+  $("#cENCount").textContent = wordCount($("#cEN").value)+" words";
+  $("#cJACount").textContent = ($("#cJA").value||"").length+" chars";
+  $("#cKeywordCount").textContent = keywordCount($("#cKeywords").value)+" keywords";
+}
+["cEN","cJA","cKeywords"].forEach(id=>$("#"+id).addEventListener("input", updateCounts));
+updateCounts();
+$("#clearFormBtn").addEventListener("click", clearCardForm);
+
+$("#addCardBtn").addEventListener("click", ()=>{
+  const card={id:crypto.randomUUID(),
+    title:$("#cTitle").value.trim(), en:$("#cEN").value.trim(), ja:$("#cJA").value.trim(),
+    romaji:$("#cRomaji").value.trim(), keywords:$("#cKeywords").value.trim(),
+    tags:$("#cTags").value.trim(), notes:$("#cNotes").value.trim(),
+    createdAt:nowISO(), updatedAt:nowISO(), audioENMediaId:null, audioJAMediaId:null
+  };
+  if(!card.en && !card.ja){ setStatus("Add at least English or Japanese."); return; }
+  const cards=getCards(); cards.unshift(card); setCards(cards);
+  logEvent("editCard", 15);
+  clearCardForm(); renderCards(); setStatus("Card added.");
+});
+
+function escapeHtml(s){ return (s??"").replace(/[&<>"']/g, m=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m])); }
+function escapeAttr(s){ return escapeHtml(s).replace(/"/g,"&quot;"); }
+
+function cardMeta(card){ return `${wordCount(card.en)} EN words • ${(card.ja||"").length} JA chars • ${keywordCount(card.keywords)} keywords`; }
+
+async function setCardAudio(cardId, lang, blob){
+  const mediaId=crypto.randomUUID();
+  await idbPut("media",{id:mediaId,type:"audio",lang,createdAt:nowISO(),blob});
+  const cards=getCards(); const idx=cards.findIndex(c=>c.id===cardId);
+  if(idx>=0){
+    if(lang==="en") cards[idx].audioENMediaId=mediaId; else cards[idx].audioJAMediaId=mediaId;
+    cards[idx].updatedAt=nowISO(); setCards(cards);
+  }
+}
+async function playMediaAudio(mediaId){
+  if(!mediaId){ setStatus("No audio saved."); return; }
+  const m=await idbGet("media", mediaId);
+  if(!m?.blob){ setStatus("Missing audio blob."); return; }
+  const url=URL.createObjectURL(m.blob);
+  const a=new Audio(url); a.onended=()=>URL.revokeObjectURL(url);
+  await a.play();
+}
+
+let recStream=null, rec=null, recChunks=[];
+async function startRec(){
+  recStream = await navigator.mediaDevices.getUserMedia({audio:true});
+  recChunks=[];
+  rec = new MediaRecorder(recStream);
+  rec.ondataavailable = e=>{ if(e.data.size>0) recChunks.push(e.data); };
+  rec.start();
+}
+async function stopRec(){
+  return new Promise((resolve)=>{
+    rec.onstop=()=>{
+      const blob=new Blob(recChunks,{type:"audio/webm"});
+      recStream.getTracks().forEach(t=>t.stop());
+      recStream=null; rec=null; recChunks=[];
+      resolve(blob);
+    };
+    rec.stop();
+  });
+}
+async function recordForCard(cardId, lang){
+  try{
+    setStatus(`Recording ${lang.toUpperCase()}…`);
+    await startRec();
+    alert(`Recording ${lang.toUpperCase()} started. Press OK to stop.`);
+    const blob = await stopRec();
+    await setCardAudio(cardId, lang, blob);
+    logEvent(lang==="en"?"recordAudioEN":"recordAudioJA", 10);
+    renderCards();
+    setStatus(`Saved ${lang.toUpperCase()} audio for card.`);
+  }catch(e){
+    console.error(e);
+    setStatus("Recording failed. Check microphone permissions.");
+  }
+}
+
+function renderCards(){
+  const list=$("#cardsList"); const cards=getCards(); list.innerHTML="";
+  if(cards.length===0){
+    list.innerHTML = `<div class="item"><div class="title">No cards yet.</div><div class="meta">Create one above.</div></div>`;
+    refreshProgress(); return;
+  }
+  for(const card of cards){
+    const el=document.createElement("div");
+    el.className="item";
+    el.innerHTML=`
+      <div class="top">
+        <div>
+          <div class="title">${escapeHtml(card.title||"Untitled")}</div>
+          <div class="meta">${escapeHtml(cardMeta(card))}</div>
+        </div>
+        <div class="actions">
+          <button class="btn" data-act="tts-en">Speak EN</button>
+          <button class="btn" data-act="tts-ja">Speak JA</button>
+          <button class="btn primary" data-act="rec-en">Record EN</button>
+          <button class="btn primary" data-act="rec-ja">Record JA</button>
+          <button class="btn" data-act="play-en">Play EN</button>
+          <button class="btn" data-act="play-ja">Play JA</button>
+          <button class="btn danger" data-act="del">Delete</button>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="grid" style="gap:10px">
+        <div class="span6"><div class="meta">English</div>
+          <textarea data-field="en" data-id="${card.id}" data-kb="en">${escapeHtml(card.en)}</textarea>
+        </div>
+        <div class="span6"><div class="meta">Japanese</div>
+          <textarea data-field="ja" data-id="${card.id}" data-kb="ja">${escapeHtml(card.ja)}</textarea>
+        </div>
+        <div class="span6"><div class="meta">Romaji</div>
+          <input data-field="romaji" data-id="${card.id}" value="${escapeAttr(card.romaji||"")}" data-kb="en"/>
+        </div>
+        <div class="span6"><div class="meta">Keywords</div>
+          <input data-field="keywords" data-id="${card.id}" value="${escapeAttr(card.keywords||"")}" data-kb="en"/>
+        </div>
+        <div class="span12"><div class="meta">Notes</div>
+          <textarea data-field="notes" data-id="${card.id}" data-kb="en">${escapeHtml(card.notes||"")}</textarea>
+        </div>
+      </div>
+    `;
+    el.addEventListener("click", async (e)=>{
+      const act=e.target?.dataset?.act; if(!act) return;
+      if(act==="tts-en"){ speak(card.en,"en-US"); logEvent("ttsEN",3); }
+      if(act==="tts-ja"){ speak(card.ja,"ja-JP"); logEvent("ttsJA",3); }
+      if(act==="play-en"){ await playMediaAudio(card.audioENMediaId); logEvent("playAudioEN",4); }
+      if(act==="play-ja"){ await playMediaAudio(card.audioJAMediaId); logEvent("playAudioJA",4); }
+      if(act==="rec-en"){ await recordForCard(card.id,"en"); }
+      if(act==="rec-ja"){ await recordForCard(card.id,"ja"); }
+      if(act==="del"){
+        if(confirm("Delete this card?")){
+          setCards(getCards().filter(c=>c.id!==card.id));
+          renderCards(); setStatus("Card deleted.");
+        }
+      }
+    });
+    $$("[data-field]", el).forEach(inp=>{
+      inp.addEventListener("input", ()=>{
+        const id=inp.dataset.id, field=inp.dataset.field;
+        const cards2=getCards(); const idx=cards2.findIndex(c=>c.id===id);
+        if(idx<0) return;
+        cards2[idx][field]=inp.value; cards2[idx].updatedAt=nowISO(); setCards(cards2);
+      });
+      inp.addEventListener("blur", ()=>logEvent("editCard", 8));
+    });
+    list.appendChild(el);
+  }
+  refreshProgress();
+}
+
+let quickENMediaId=null, quickJAMediaId=null;
+$("#speakQuickEN").addEventListener("click", ()=>{ speak($("#quickEN").value,"en-US"); logEvent("ttsEN",3); });
+$("#speakQuickJA").addEventListener("click", ()=>{ speak($("#quickJA").value,"ja-JP"); logEvent("ttsJA",3); });
+$("#recQuickEN").addEventListener("click", async ()=>{
+  try{
+    setStatus("Recording quick EN…"); await startRec(); alert("Recording started. Press OK to stop.");
+    const blob=await stopRec(); quickENMediaId=crypto.randomUUID();
+    await idbPut("media",{id:quickENMediaId,type:"audio",lang:"en",createdAt:nowISO(),blob,label:"quickEN"});
+    $("#playQuickEN").disabled=false; logEvent("recordAudioEN",8); setStatus("Saved quick EN audio."); renderMediaLists();
+  }catch{ setStatus("Recording failed."); }
+});
+$("#recQuickJA").addEventListener("click", async ()=>{
+  try{
+    setStatus("Recording quick JA…"); await startRec(); alert("Recording started. Press OK to stop.");
+    const blob=await stopRec(); quickJAMediaId=crypto.randomUUID();
+    await idbPut("media",{id:quickJAMediaId,type:"audio",lang:"ja",createdAt:nowISO(),blob,label:"quickJA"});
+    $("#playQuickJA").disabled=false; logEvent("recordAudioJA",8); setStatus("Saved quick JA audio."); renderMediaLists();
+  }catch{ setStatus("Recording failed."); }
+});
+$("#playQuickEN").addEventListener("click", ()=>playMediaAudio(quickENMediaId));
+$("#playQuickJA").addEventListener("click", ()=>playMediaAudio(quickJAMediaId));
+
+function getPhrases(){ return LS.get(KEYS.phrases, []); }
+function setPhrases(v){ LS.set(KEYS.phrases, v); }
+$("#seedPhrasesBtn").addEventListener("click", ()=>{
+  if(getPhrases().length>0){ setStatus("Phrases already exist."); return; }
+  const seed=[
+    ["Friendly","Nice to meet you.","はじめまして。","Hajimemashite."],
+    ["Friendly","Thank you very much.","ありがとうございます。","Arigatō gozaimasu."],
+    ["Friendly","How are you?","お元気ですか？","Ogenki desu ka?"],
+    ["Friendly","Please.","お願いします。","Onegaishimasu."],
+    ["Friendly","Excuse me / I’m sorry.","すみません。","Sumimasen."],
+    ["Respectful","Please take care of yourself.","お体に気をつけてください。","O-karada ni ki o tsukete kudasai."],
+    ["Church","May God bless you.","神様の祝福がありますように。","Kamisama no shukufuku ga arimasu yō ni."],
+    ["Church","I will pray for you.","あなたのために祈ります。","Anata no tame ni inorimasu."],
+    ["Church","Peace be with you.","あなたに平安がありますように。","Anata ni heian ga arimasu yō ni."]
+  ].map(x=>({id:crypto.randomUUID(), cat:x[0], en:x[1], ja:x[2], ro:x[3], notes:"", fav:false, createdAt:nowISO()}));
+  setPhrases(seed); renderPhrases(); setStatus("Seeded phrases.");
+});
+$("#clearPhraseFormBtn").addEventListener("click", ()=>{ $("#pCat").value="Friendly"; $("#pEN").value=""; $("#pJA").value=""; $("#pRomaji").value=""; $("#pNotes").value=""; });
+$("#savePhraseBtn").addEventListener("click", ()=>{
+  const p={id:crypto.randomUUID(), cat:$("#pCat").value, en:$("#pEN").value.trim(), ja:$("#pJA").value.trim(), ro:$("#pRomaji").value.trim(), notes:$("#pNotes").value.trim(), fav:false, createdAt:nowISO()};
+  if(!p.en && !p.ja){ setStatus("Add English or Japanese."); return; }
+  const arr=getPhrases(); arr.unshift(p); setPhrases(arr); logEvent("phrasePractice", 6);
+  $("#clearPhraseFormBtn").click(); renderPhrases(); setStatus("Phrase saved.");
+});
+function renderPhrases(){
+  const list=$("#phrasesList"); const arr=getPhrases(); list.innerHTML="";
+  if(arr.length===0){ list.innerHTML=`<div class="item"><div class="title">No phrases yet.</div><div class="meta">Seed or add your own.</div></div>`; refreshProgress(); return; }
+  for(const p of arr){
+    const el=document.createElement("div"); el.className="item";
+    el.innerHTML=`
+      <div class="top">
+        <div>
+          <div class="title">${escapeHtml(p.ja || "(日本語)")}</div>
+          <div class="meta">${escapeHtml(p.cat)} • ${escapeHtml(p.ro||"")}</div>
+          <div class="muted small" style="margin-top:6px">${escapeHtml(p.en||"")}</div>
+        </div>
+        <div class="actions">
+          <button class="btn" data-act="speak">Speak</button>
+          <button class="btn ${p.fav?"primary":""}" data-act="fav">${p.fav?"★ Favorite":"☆ Favorite"}</button>
+          <button class="btn danger" data-act="del">Delete</button>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <label class="small muted">Notes</label>
+      <textarea data-id="${p.id}" data-kb="en">${escapeHtml(p.notes||"")}</textarea>
+    `;
+    el.addEventListener("click",(e)=>{
+      const act=e.target?.dataset?.act; if(!act) return;
+      if(act==="speak"){ speak(p.ja,"ja-JP"); logEvent("ttsJA",3); }
+      if(act==="fav"){ const a=getPhrases(); const i=a.findIndex(x=>x.id===p.id); if(i>=0){ a[i].fav=!a[i].fav; setPhrases(a); renderPhrases(); } }
+      if(act==="del"){ if(confirm("Delete this phrase?")){ setPhrases(getPhrases().filter(x=>x.id!==p.id)); renderPhrases(); } }
+    });
+    const ta=$("textarea", el);
+    ta.addEventListener("input", ()=>{
+      const a=getPhrases(); const i=a.findIndex(x=>x.id===p.id); if(i>=0){ a[i].notes=ta.value; setPhrases(a); }
+    });
+    ta.addEventListener("blur", ()=>logEvent("phrasePractice", 6));
+    list.appendChild(el);
+  }
+  refreshProgress();
+}
+
+const brush={canvas:$("#brushCanvas"), ctx:null, drawing:false, last:null, size:14, dark:82, smooth:45, ghost:true, target:"あ"};
+function resizeCanvasToDisplaySize(canvas){
+  const rect=canvas.getBoundingClientRect();
+  const dpr=Math.max(1, window.devicePixelRatio||1);
+  const w=Math.floor(rect.width*dpr), h=Math.floor(rect.height*dpr);
+  if(canvas.width!==w||canvas.height!==h){ canvas.width=w; canvas.height=h; }
+  return dpr;
+}
+function drawGhost(){
+  if(!brush.ghost) return;
+  const c=brush.canvas, ctx=brush.ctx;
+  resizeCanvasToDisplaySize(c);
+  ctx.save();
+  ctx.globalAlpha=0.10;
+  ctx.fillStyle="#000";
+  ctx.textAlign="center"; ctx.textBaseline="middle";
+  ctx.font = `${Math.floor(Math.min(c.width,c.height)/3)}px ${getComputedStyle(document.documentElement).getPropertyValue('--serif')}`;
+  ctx.fillText(brush.target, c.width/2, c.height/2);
+  ctx.restore();
+}
+function clearCanvas(){
+  const c=brush.canvas, ctx=brush.ctx;
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0,c.width,c.height);
+  drawGhost();
+}
+function dist(a,b){ const dx=a.x-b.x, dy=a.y-b.y; return Math.sqrt(dx*dx+dy*dy); }
+function lerp(a,b,t){ return a+(b-a)*t; }
+function strokeWidthFromSpeed(speed){
+  const base=brush.size, minW=Math.max(2, base*0.35), maxW=base*1.55;
+  const s=Math.min(2, Math.max(0, speed));
+  const t=1-(s/2);
+  return minW + (maxW-minW)*t;
+}
+function inkColor(alpha=1){ const d=brush.dark/100; return `rgba(0,0,0,${Math.max(0.12,d)*alpha})`; }
+function drawLine(p0,p1,w0,w1){
+  const ctx=brush.ctx;
+  const steps=Math.max(6, Math.floor(dist(p0,p1)/2));
+  for(let i=0;i<=steps;i++){
+    const t=i/steps;
+    const x=lerp(p0.x,p1.x,t), y=lerp(p0.y,p1.y,t), w=lerp(w0,w1,t);
+    ctx.beginPath(); ctx.fillStyle=inkColor(0.85); ctx.arc(x,y,w/2,0,Math.PI*2); ctx.fill();
+  }
+}
+function getPoint(evt){
+  const rect=brush.canvas.getBoundingClientRect();
+  const dpr=window.devicePixelRatio||1;
+  return {x:(evt.clientX-rect.left)*dpr, y:(evt.clientY-rect.top)*dpr, t:performance.now()};
+}
+function startDraw(evt){ brush.drawing=true; brush.last=getPoint(evt); }
+function moveDraw(evt){
+  if(!brush.drawing) return;
+  const p=getPoint(evt); const prev=brush.last;
+  const s=brush.smooth/100;
+  const sp = dist(prev,p) / Math.max(1,(p.t-prev.t));
+  const w1 = strokeWidthFromSpeed(sp);
+  const w0 = prev.w ?? w1;
+  const pp = {x:lerp(prev.x,p.x,1-s), y:lerp(prev.y,p.y,1-s), t:p.t, w:w1};
+  drawLine(prev, pp, w0, w1);
+  brush.last=pp;
+}
+function endDraw(){ brush.drawing=false; brush.last=null; logEvent("calligraphy", 20); }
+function initBrush(){
+  brush.ctx = brush.canvas.getContext("2d");
+  resizeCanvasToDisplaySize(brush.canvas);
+  clearCanvas();
+  brush.canvas.addEventListener("pointerdown",(e)=>{ brush.canvas.setPointerCapture(e.pointerId); startDraw(e); });
+  brush.canvas.addEventListener("pointermove", moveDraw);
+  brush.canvas.addEventListener("pointerup", endDraw);
+  brush.canvas.addEventListener("pointercancel", endDraw);
+  $("#brushSize").addEventListener("input",(e)=>brush.size=+e.target.value);
+  $("#inkDark").addEventListener("input",(e)=>brush.dark=+e.target.value);
+  $("#smooth").addEventListener("input",(e)=>brush.smooth=+e.target.value);
+  $("#clearCanvasBtn").addEventListener("click", ()=>{ clearCanvas(); setStatus("Canvas cleared."); });
+  $("#toggleGhostBtn").addEventListener("click", ()=>{
+    brush.ghost=!brush.ghost;
+    $("#toggleGhostBtn").textContent = "Ghost Guide: " + (brush.ghost?"ON":"OFF");
+    clearCanvas();
+  });
+  $("#exportCanvasBtn").addEventListener("click", ()=>{
+    const a=document.createElement("a");
+    a.download=`calligraphy_${Date.now()}.png`;
+    a.href=brush.canvas.toDataURL("image/png");
+    a.click();
+    logEvent("calligraphy", 30);
+  });
+  $("#speakTargetBtn").addEventListener("click", ()=> speak(brush.target,"ja-JP"));
+}
+const guides=[
+  {jp:"あ",en:"a",note:"Hiragana"},{jp:"い",en:"i",note:"Hiragana"},{jp:"う",en:"u",note:"Hiragana"},
+  {jp:"え",en:"e",note:"Hiragana"},{jp:"お",en:"o",note:"Hiragana"},{jp:"か",en:"ka",note:"Hiragana"},
+  {jp:"さ",en:"sa",note:"Hiragana"},{jp:"た",en:"ta",note:"Hiragana"},{jp:"な",en:"na",note:"Hiragana"},
+  {jp:"は",en:"ha",note:"Hiragana"},{jp:"ま",en:"ma",note:"Hiragana"},{jp:"や",en:"ya",note:"Hiragana"},
+  {jp:"ら",en:"ra",note:"Hiragana"},{jp:"わ",en:"wa",note:"Hiragana"},
+  {jp:"平安",en:"peace",note:"Heian"},{jp:"希望",en:"hope",note:"Kibō"},{jp:"愛",en:"love",note:"Ai"},
+  {jp:"祈り",en:"prayer",note:"Inori"},{jp:"ありがとう",en:"thank you",note:"Arigatō"},{jp:"すみません",en:"excuse me",note:"Sumimasen"}
+];
+function renderGuides(){
+  const g=$("#guideGrid"); g.innerHTML="";
+  guides.forEach(x=>{
+    const d=document.createElement("div");
+    d.className="guide";
+    d.innerHTML=`<div class="jp">${escapeHtml(x.jp)}</div><div class="en">${escapeHtml(x.en)} <small>• ${escapeHtml(x.note)}</small></div>`;
+    d.addEventListener("click", ()=>{
+      brush.target=x.jp;
+      $("#targetBox").textContent=x.jp;
+      $("#targetCaption").textContent = `${x.en} • ${x.note}`;
+      clearCanvas();
+      setStatus("Target set: "+x.jp);
+    });
+    g.appendChild(d);
+  });
+  $("#targetBox").textContent=brush.target;
+}
+
+let lastAudioMediaId=null, isRec=false;
+$("#startRecBtn").addEventListener("click", async ()=>{
+  try{
+    await startRec(); isRec=true;
+    $("#startRecBtn").disabled=true; $("#stopRecBtn").disabled=false;
+    $("#recStatus").textContent="Recording…"; setStatus("Recording…");
+  }catch{ setStatus("Microphone permission denied."); }
+});
+$("#stopRecBtn").addEventListener("click", async ()=>{
+  if(!isRec) return;
+  const blob=await stopRec(); isRec=false;
+  $("#startRecBtn").disabled=false; $("#stopRecBtn").disabled=true; $("#playLastRecBtn").disabled=false;
+  const lang=$("#rLang").value; const label=$("#rLabel").value.trim() || (lang==="en"?"Audio (EN)":"Audio (JA)");
+  lastAudioMediaId=crypto.randomUUID();
+  await idbPut("media",{id:lastAudioMediaId,type:"audio",lang,label,createdAt:nowISO(),blob});
+  $("#recStatus").textContent="Saved: "+label;
+  logEvent(lang==="en"?"recordAudioEN":"recordAudioJA", 12);
+  renderMediaLists(); setStatus("Audio saved.");
+});
+$("#playLastRecBtn").addEventListener("click", ()=>playMediaAudio(lastAudioMediaId));
+$("#videoInput").addEventListener("change", async (e)=>{
+  const file=e.target.files?.[0]; if(!file) return;
+  const id=crypto.randomUUID();
+  await idbPut("media",{id,type:"video",createdAt:nowISO(),blob:file,label:`Video ${new Date().toLocaleString()}`});
+  logEvent("recordVideo", 20);
+  renderMediaLists(); setStatus("Video saved."); e.target.value="";
+});
+$("#clearVideosBtn").addEventListener("click", async ()=>{
+  if(!confirm("Delete all saved videos?")) return;
+  const all=await idbAll("media");
+  for(const v of all.filter(x=>x.type==="video")) await idbDelete("media", v.id);
+  renderMediaLists(); setStatus("Cleared videos.");
+});
+async function renderMediaLists(){
+  const all=await idbAll("media");
+  const aud=all.filter(x=>x.type==="audio").sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||""));
+  const aList=$("#audioList"); aList.innerHTML="";
+  if(aud.length===0) aList.innerHTML=`<div class="item"><div class="title">No audio yet.</div></div>`;
+  aud.slice(0,40).forEach(a=>{
+    const el=document.createElement("div"); el.className="item";
+    el.innerHTML=`
+      <div class="top">
+        <div>
+          <div class="title">${escapeHtml(a.label||"Audio")}</div>
+          <div class="meta">${escapeHtml((a.lang||"").toUpperCase())} • ${new Date(a.createdAt).toLocaleString()}</div>
+        </div>
+        <div class="actions">
+          <button class="btn" data-act="play">Play</button>
+          <button class="btn danger" data-act="del">Delete</button>
+        </div>
+      </div>`;
+    el.addEventListener("click", async (e)=>{
+      const act=e.target?.dataset?.act;
+      if(act==="play"){ await playMediaAudio(a.id); logEvent(a.lang==="en"?"playAudioEN":"playAudioJA",4); }
+      if(act==="del"){ await idbDelete("media", a.id); renderMediaLists(); }
+    });
+    aList.appendChild(el);
+  });
+
+  const vids=all.filter(x=>x.type==="video").sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||""));
+  const vList=$("#videoList"); vList.innerHTML="";
+  if(vids.length===0) vList.innerHTML=`<div class="item"><div class="title">No videos yet.</div></div>`;
+  vids.slice(0,15).forEach(v=>{
+    const url=URL.createObjectURL(v.blob);
+    const el=document.createElement("div"); el.className="item";
+    el.innerHTML=`
+      <div class="title">${escapeHtml(v.label||"Video")}</div>
+      <div class="meta">${new Date(v.createdAt).toLocaleString()}</div>
+      <video controls playsinline style="width:100%; margin-top:8px; border-radius:12px; border:1px solid var(--stroke)" src="${url}"></video>
+      <div class="row" style="margin-top:8px"><button class="btn danger" data-act="del">Delete</button></div>`;
+    el.addEventListener("click", async (e)=>{
+      if(e.target?.dataset?.act==="del"){ await idbDelete("media", v.id); renderMediaLists(); }
+    });
+    vList.appendChild(el);
+  });
+}
+
+let selectedPinId=null;
+async function getPins(){
+  const pins=await idbAll("pins");
+  return pins.sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||""));
+}
+function mapRect(){ return $("#map").getBoundingClientRect(); }
+$("#map").addEventListener("click", async (e)=>{
+  const r=mapRect();
+  const x=(e.clientX-r.left)/r.width;
+  const y=(e.clientY-r.top)/r.height;
+  const pin={id:crypto.randomUUID(), x, y, title:"", notes:"", photoIds:[], createdAt:nowISO()};
+  await idbPut("pins", pin);
+  selectedPinId=pin.id;
+  await renderPins();
+  selectPin(pin.id);
+  setStatus("Pin created.");
+});
+async function selectPin(id){
+  const pin=await idbGet("pins", id); if(!pin) return;
+  selectedPinId=id;
+  $("#pinTitle").value=pin.title||"";
+  $("#pinNotes").value=pin.notes||"";
+  $("#deletePinBtn").disabled=false;
+  $("#pinHint").textContent="Editing selected pin.";
+  highlightPin(id);
+}
+function highlightPin(id){
+  $$(".pin").forEach(p=>p.style.outline="none");
+  const el=document.querySelector(`.pin[data-id="${id}"]`);
+  if(el) el.style.outline="3px solid rgba(31,79,122,.25)";
+}
+$("#savePinBtn").addEventListener("click", async ()=>{
+  if(!selectedPinId){ setStatus("No pin selected."); return; }
+  const pin=await idbGet("pins", selectedPinId); if(!pin) return;
+  pin.title=$("#pinTitle").value.trim();
+  pin.notes=$("#pinNotes").value.trim();
+  const files=Array.from($("#pinPhotos").files||[]);
+  for(const f of files){
+    const id=crypto.randomUUID();
+    await idbPut("media",{id,type:"pinPhoto",createdAt:nowISO(),blob:f,label:f.name});
+    pin.photoIds.push(id);
+  }
+  $("#pinPhotos").value="";
+  await idbPut("pins", pin);
+  await renderPins();
+  setStatus("Pin saved.");
+});
+$("#deletePinBtn").addEventListener("click", async ()=>{
+  if(!selectedPinId) return;
+  if(!confirm("Delete this pin?")) return;
+  await idbDelete("pins", selectedPinId);
+  selectedPinId=null;
+  $("#pinTitle").value=""; $("#pinNotes").value="";
+  $("#deletePinBtn").disabled=true;
+  $("#pinHint").textContent="Click the map area to create a pin.";
+  await renderPins();
+  setStatus("Pin deleted.");
+});
+async function renderPins(){
+  $$(".pin", $("#map")).forEach(p=>p.remove());
+  const pins=await getPins();
+  const map=$("#map");
+  pins.forEach(p=>{
+    const d=document.createElement("div");
+    d.className="pin"; d.dataset.id=p.id;
+    d.style.left=(p.x*100)+"%"; d.style.top=(p.y*100)+"%";
+    d.title=p.title||"Pin";
+    d.addEventListener("click",(e)=>{ e.stopPropagation(); selectPin(p.id); });
+    map.appendChild(d);
+  });
+  const list=$("#pinList"); list.innerHTML="";
+  if(pins.length===0){
+    list.innerHTML=`<div class="item"><div class="title">No pins yet.</div><div class="meta">Click the map to add one.</div></div>`;
+    refreshProgress(); return;
+  }
+  for(const p of pins){
+    const el=document.createElement("div"); el.className="item";
+    el.innerHTML=`
+      <div class="top">
+        <div>
+          <div class="title">${escapeHtml(p.title||"Untitled Pin")}</div>
+          <div class="meta">${new Date(p.createdAt).toLocaleString()} • ${(p.photoIds||[]).length} photos</div>
+        </div>
+        <div class="actions">
+          <button class="btn" data-act="open">Open</button>
+          <button class="btn danger" data-act="del">Delete</button>
+        </div>
+      </div>
+      ${p.notes ? `<div class="muted small" style="margin-top:8px;white-space:pre-wrap">${escapeHtml(p.notes)}</div>`:""}
+      <div class="row" style="margin-top:8px" data-photos></div>`;
+    const photoRow=el.querySelector("[data-photos]");
+    const ids=(p.photoIds||[]).slice(0,3);
+    for(const pid of ids){
+      const m=await idbGet("media", pid);
+      if(m?.blob){
+        const url=URL.createObjectURL(m.blob);
+        const img=document.createElement("img");
+        img.src=url; img.style.width="72px"; img.style.height="72px"; img.style.objectFit="cover";
+        img.style.borderRadius="12px"; img.style.border="1px solid var(--stroke)";
+        photoRow.appendChild(img);
+      }
+    }
+    el.addEventListener("click", async (e)=>{
+      const act=e.target?.dataset?.act;
+      if(act==="open") selectPin(p.id);
+      if(act==="del"){
+        if(confirm("Delete this pin?")){
+          await idbDelete("pins", p.id);
+          if(selectedPinId===p.id) selectedPinId=null;
+          await renderPins();
+        }
+      }
+    });
+    list.appendChild(el);
+  }
+  if(selectedPinId) highlightPin(selectedPinId);
+  refreshProgress();
+}
+
+function estimateMinutes(logs){
+  const map={ttsEN:0.05,ttsJA:0.05,recordAudioEN:0.25,recordAudioJA:0.25,playAudioEN:0.08,playAudioJA:0.08,recordVideo:0.4,calligraphy:0.33,phrasePractice:0.12,editCard:0.12};
+  const total=logs.reduce((sum,l)=>sum+(map[l.type]??(l.seconds/60??0)),0);
+  return Math.max(0, Math.round(total));
+}
+function streakFromLogs(logs){
+  const days=new Set(logs.map(l=>dayKey(l.at)));
+  if(days.size===0) return 0;
+  let streak=0; let d=new Date();
+  while(days.has(dayKey(d))){ streak++; d=new Date(d.getTime()-86400000); }
+  return streak;
+}
+function activityBreakdown(logs){
+  const counts={}; logs.forEach(l=>counts[l.type]=(counts[l.type]||0)+1);
+  const labels={ttsEN:"Listen (EN)",ttsJA:"Listen (JA)",recordAudioEN:"Record (EN)",recordAudioJA:"Record (JA)",playAudioEN:"Play (EN)",playAudioJA:"Play (JA)",recordVideo:"Video",calligraphy:"Calligraphy",phrasePractice:"Phrases",editCard:"Edits"};
+  return Object.entries(counts).map(([k,v])=>({k,label:labels[k]||k,v})).sort((a,b)=>b.v-a.v);
+}
+async function refreshProgress(){
+  const cards=getCards(), phrases=getPhrases(), logs=LS.get(KEYS.logs, []);
+  const allKw=new Set();
+  cards.forEach(c=> (c.keywords||"").split(",").map(x=>x.trim()).filter(Boolean).forEach(k=>allKw.add(k.toLowerCase())) );
+  $("#statCards").textContent=cards.length;
+  $("#statPhrases").textContent=phrases.length;
+  $("#statKeywords").textContent=allKw.size;
+  $("#statMinutes").textContent=estimateMinutes(logs);
+  $("#statStreak").textContent=streakFromLogs(logs);
+  const act=activityBreakdown(logs);
+  const list=$("#activityList"); list.innerHTML="";
+  if(act.length===0){
+    list.innerHTML=`<div class="item"><div class="title">No activity yet.</div><div class="meta">Start by adding a card.</div></div>`;
+  }else{
+    act.slice(0,10).forEach(a=>{
+      const el=document.createElement("div"); el.className="item";
+      el.innerHTML=`<div class="top"><div><div class="title">${escapeHtml(a.label)}</div><div class="meta">${a.v} events</div></div></div>`;
+      list.appendChild(el);
+    });
+  }
+}
+$("#exportBtn").addEventListener("click", async ()=>{
+  const payload={version:1, exportedAt:nowISO(), cards:getCards(), phrases:getPhrases(), logs:LS.get(KEYS.logs, []), pins:await idbAll("pins"),
+    mediaIndex:(await idbAll("media")).map(m=>({id:m.id,type:m.type,lang:m.lang,label:m.label,createdAt:m.createdAt}))};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.download=`ScriptureBridge_Book_${Date.now()}.json`;
+  a.href=URL.createObjectURL(blob);
+  a.click();
+  setStatus("Exported book JSON (without media blobs).");
+});
+$("#importInput").addEventListener("change", async (e)=>{
+  const file=e.target.files?.[0]; if(!file) return;
+  const txt=await file.text(); const data=JSON.parse(txt);
+  if(!data?.version){ setStatus("Invalid file."); return; }
+  if(confirm("Import will replace your current cards/phrases/logs and pins. Continue?")){
+    setCards(data.cards||[]); setPhrases(data.phrases||[]); LS.set(KEYS.logs, data.logs||[]);
+    const pins=await idbAll("pins"); for(const p of pins) await idbDelete("pins", p.id);
+    for(const p of (data.pins||[])) await idbPut("pins", p);
+    await renderPins(); renderCards(); renderPhrases(); await renderMediaLists(); refreshProgress();
+    setStatus("Imported book.");
+  }
+  e.target.value="";
+});
+$("#wipeBtn").addEventListener("click", async ()=>{
+  if(!confirm("Wipe all local data (cards, phrases, logs, pins, media)?")) return;
+  localStorage.removeItem(KEYS.cards); localStorage.removeItem(KEYS.phrases); localStorage.removeItem(KEYS.logs);
+  for(const p of await idbAll("pins")) await idbDelete("pins", p.id);
+  for(const m of await idbAll("media")) await idbDelete("media", m.id);
+  selectedPinId=null;
+  renderCards(); renderPhrases(); await renderPins(); await renderMediaLists(); refreshProgress();
+  setStatus("Wiped local data.");
+});
+
+
+// Settings (background)
+const settingsSheet = document.getElementById("settingsSheet");
+const openSettingsBtn = document.getElementById("openSettingsBtn");
+const closeSettingsBtn = document.getElementById("closeSettingsBtn");
+const themeSelect = document.getElementById("themeSelect");
+const bgUpload = document.getElementById("bgUpload");
+const applyThemeBtn = document.getElementById("applyThemeBtn");
+const clearCustomBgBtn = document.getElementById("clearCustomBgBtn");
+const resetThemeBtn = document.getElementById("resetThemeBtn");
+
+function openSettings(){
+  settingsSheet.classList.add("show");
+  settingsSheet.setAttribute("aria-hidden","false");
+  const currentTheme = localStorage.getItem(THEME_KEY) || "theme-washi";
+  themeSelect.value = currentTheme;
+}
+function closeSettings(){
+  settingsSheet.classList.remove("show");
+  settingsSheet.setAttribute("aria-hidden","true");
+}
+openSettingsBtn?.addEventListener("click", openSettings);
+closeSettingsBtn?.addEventListener("click", closeSettings);
+settingsSheet?.addEventListener("click", (e)=>{ if(e.target===settingsSheet) closeSettings(); });
+
+applyThemeBtn?.addEventListener("click", ()=>{
+  const t = themeSelect.value;
+  localStorage.setItem(THEME_KEY, t);
+  applyThemeClass(t);
+  setStatus("Background applied.");
+  closeSettings();
+});
+
+bgUpload?.addEventListener("change", async (e)=>{
+  const file = e.target.files?.[0];
+  if(!file) return;
+  if(file.size > 1500000){
+    setStatus("Image is large. Choose a smaller (compressed) background.");
+    e.target.value = "";
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    const dataUrl = reader.result;
+    applyCustomBg(dataUrl);
+    setStatus("Custom background set.");
+  };
+  reader.readAsDataURL(file);
+  e.target.value="";
+});
+
+clearCustomBgBtn?.addEventListener("click", ()=>{
+  applyCustomBg(null);
+  setStatus("Custom background removed.");
+});
+
+resetThemeBtn?.addEventListener("click", ()=>{
+  localStorage.removeItem(THEME_KEY);
+  applyThemeClass("theme-washi");
+  applyCustomBg(null);
+  setStatus("Theme reset to default.");
+  closeSettings();
+});
+
+(async function init(){
+  db = await idbOpen();
+  loadTheme();
+  renderCards();
+  renderPhrases();
+  initBrush();
+  renderGuides();
+  await renderPins();
+  await renderMediaLists();
+  refreshProgress();
+  setStatus("Ready. Tap Keyboard to type with EN/かな.");
+})();
+</script>
+</body>
+</html>
