@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import {useMemo, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {Search, ArrowUpRight, Cpu, FlaskConical, GraduationCap, Shield, BookOpen, Orbit} from 'lucide-react';
 import './styles.css';
