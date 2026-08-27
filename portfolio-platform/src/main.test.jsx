@@ -1,7 +1,9 @@
-import {describe,it,expect} from 'vitest';
-import {render,screen} from '@testing-library/react';
+import {afterEach,describe,it,expect} from 'vitest';
+import {cleanup,render,screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {App,projects} from './main.jsx';
+
+afterEach(()=>cleanup());
 
 describe('portfolio platform',()=>{
   it('renders all configured projects',()=>{
