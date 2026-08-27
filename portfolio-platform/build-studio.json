@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "projectId": "build-studio-live",
+  "name": "Build Studio Live",
+  "sourceOfTruth": "github",
+  "root": "portfolio-platform",
+  "stage": "functional",
+  "platform": "React + Vite",
+  "qualityGates": {
+    "lint": "required",
+    "tests": "required",
+    "build": "required",
+    "accessibilitySmoke": "required",
+    "previewDeployment": "recommended",
+    "productionDeployment": "required-for-release"
+  },
+  "evidence": {
+    "githubActions": true,
+    "pullRequests": true,
+    "releases": true,
+    "deployment": "vercel"
+  },
+  "releaseStages": ["defined","prototype","functional","tested","polished","release-candidate","production","maintained"]
+}
