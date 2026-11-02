@@ -25,11 +25,11 @@ const report = {
   generated_at: new Date().toISOString(),
   commit: process.env.GITHUB_SHA || null,
   run_id: process.env.GITHUB_RUN_ID || null,
-  scope: target ? 'preview-smoke' : 'harness-only',
-  application_verified: Boolean(target && tests.some(t => t.name.includes('Application preview') && t.status === 'expected')),
+  scope: target ? 'portfolio-regression-and-preview-smoke' : 'portfolio-regression',
+  application_verified: Boolean(passed && tests.filter(t => t.name.startsWith('Portfolio ')).length === 3 && tests.filter(t => t.name.startsWith('Portfolio ')).every(t => t.status === 'expected')),
   release_ready: false,
   gate: passed ? 'pass' : 'fail',
-  reason: target ? 'Only preview smoke tests were run; functional regression and native release gates remain required.' : 'No application target configured; harness passing does NOT validate any app.',
+  reason: target ? 'Only preview smoke tests were run; functional regression and native release gates remain required.' : 'Portfolio source regression tests run against the built app; full release coverage remains incomplete.',
   stats, tests, read_error: readError,
   cloudflare_deployed: false
 };
