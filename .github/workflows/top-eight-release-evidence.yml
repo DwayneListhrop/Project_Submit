@@ -1,4 +1,4 @@
-name: Top Eight Release Evidence
+name: Top 30 Release Evidence
 on:
   pull_request:
   push:
@@ -15,8 +15,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test registry and fail-closed evidence logic
-        run: node --test tools/studio-hub-qa/release-gate.test.mjs
+      - name: Test top-30 registry, dashboard and fail-closed release logic
+        run: node --test tools/studio-hub-qa/release-gate.test.mjs tools/studio-hub-qa/top30.test.mjs
       - name: Verify registered GitHub Actions evidence
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -31,9 +31,11 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: top-eight-release-gate
+          name: top-30-release-gate
           path: |
             tools/studio-hub-qa/release-gate-report.json
             tools/studio-hub-qa/github-evidence-report.json
             tools/studio-hub-qa/historical-ci-report.json
+            tools/studio-hub-qa/projects.json
+            tools/studio-hub-qa/dashboard/index.html
           retention-days: 30
