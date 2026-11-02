@@ -21,6 +21,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: node tools/studio-hub-qa/verify-github-evidence.mjs
+      - name: Verify historical CI run metadata
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/studio-hub-qa/historical-ci.mjs
       - name: Validate evidence registry (non-enforcing pilot)
         run: node tools/studio-hub-qa/release-gate.mjs
       - name: Publish gate reports
@@ -31,4 +35,5 @@ jobs:
           path: |
             tools/studio-hub-qa/release-gate-report.json
             tools/studio-hub-qa/github-evidence-report.json
+            tools/studio-hub-qa/historical-ci-report.json
           retention-days: 30
