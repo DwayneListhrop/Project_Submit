@@ -1,0 +1,25 @@
+name: Top Eight Release Evidence
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate evidence registry (non-enforcing pilot)
+        run: node tools/studio-hub-qa/release-gate.mjs
+      - name: Publish gate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: top-eight-release-gate
+          path: tools/studio-hub-qa/release-gate-report.json
+          retention-days: 30
