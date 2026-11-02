@@ -8,7 +8,23 @@
       "source": "",
       "sha": "",
       "target_url": "",
-      "evidence": []
+      "evidence": [],
+      "observed_ci": [
+        {
+          "run_id": 40640529884,
+          "workflow": "GED Math free demo",
+          "sha": "2e25020e",
+          "category": "functional-pilot",
+          "classification": "historical-only"
+        },
+        {
+          "run_id": 40640408231,
+          "workflow": "Commerce checkout tests",
+          "sha": "f9c04b82",
+          "category": "commerce-pilot",
+          "classification": "historical-only"
+        }
+      ]
     },
     {
       "id": "living-cell",
@@ -17,7 +33,8 @@
       "source": "",
       "sha": "",
       "target_url": "",
-      "evidence": []
+      "evidence": [],
+      "observed_ci": []
     },
     {
       "id": "warehouse",
@@ -26,7 +43,16 @@
       "source": "",
       "sha": "",
       "target_url": "",
-      "evidence": []
+      "evidence": [],
+      "observed_ci": [
+        {
+          "run_id": 40641304878,
+          "workflow": "Warehouse guided native build",
+          "sha": "34a6b734",
+          "category": "persistence-pilot",
+          "classification": "historical-only"
+        }
+      ]
     },
     {
       "id": "repeat-listener",
@@ -35,7 +61,8 @@
       "source": "",
       "sha": "",
       "target_url": "",
-      "evidence": []
+      "evidence": [],
+      "observed_ci": []
     },
     {
       "id": "caretaxi",
@@ -44,7 +71,16 @@
       "source": "apps/caretaxi",
       "sha": "",
       "target_url": "",
-      "evidence": []
+      "evidence": [],
+      "observed_ci": [
+        {
+          "run_id": 40641619943,
+          "workflow": "CareTaxi pilot verification",
+          "sha": "bd7f8f32",
+          "category": "pilot-verification",
+          "classification": "historical-only"
+        }
+      ]
     },
     {
       "id": "biology-unified",
@@ -53,7 +89,8 @@
       "source": "",
       "sha": "",
       "target_url": "",
-      "evidence": []
+      "evidence": [],
+      "observed_ci": []
     },
     {
       "id": "motioncraft",
@@ -62,7 +99,8 @@
       "source": "",
       "sha": "",
       "target_url": "",
-      "evidence": []
+      "evidence": [],
+      "observed_ci": []
     },
     {
       "id": "studio-hub",
@@ -71,7 +109,16 @@
       "source": "tools/studio-hub-qa",
       "sha": "",
       "target_url": "",
-      "evidence": []
+      "evidence": [],
+      "observed_ci": [
+        {
+          "run_id": 41390738066,
+          "workflow": "Top Eight Release Evidence",
+          "sha": "e744816e",
+          "category": "qa-infrastructure",
+          "classification": "historical-only"
+        }
+      ]
     }
   ]
 }
