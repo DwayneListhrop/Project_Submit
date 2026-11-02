@@ -14,6 +14,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Test registry and fail-closed evidence logic
+        run: node --test tools/studio-hub-qa/release-gate.test.mjs
       - name: Validate evidence registry (non-enforcing pilot)
         run: node tools/studio-hub-qa/release-gate.mjs
       - name: Publish gate report
