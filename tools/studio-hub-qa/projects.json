@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "projects": [
+    {
+      "id": "ged-math",
+      "name": "GED Math Sales Pilot",
+      "repo": "dwayne-lis/d_builds",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "evidence": []
+    },
+    {
+      "id": "living-cell",
+      "name": "Living Cell Studio",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "evidence": []
+    },
+    {
+      "id": "warehouse",
+      "name": "Warehouse FlowOps",
+      "repo": "dwayne-lis/d_builds",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "evidence": []
+    },
+    {
+      "id": "repeat-listener",
+      "name": "Repeat Listener",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "evidence": []
+    },
+    {
+      "id": "caretaxi",
+      "name": "CareTaxi",
+      "repo": "dwayne-lis/d_builds",
+      "source": "apps/caretaxi",
+      "sha": "",
+      "target_url": "",
+      "evidence": []
+    },
+    {
+      "id": "biology-unified",
+      "name": "Biology 1 Unified Studio",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "evidence": []
+    },
+    {
+      "id": "motioncraft",
+      "name": "MotionCraft Studio",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "evidence": []
+    },
+    {
+      "id": "studio-hub",
+      "name": "Studio Hub",
+      "repo": "DwayneListhrop/Project_Submit",
+      "source": "tools/studio-hub-qa",
+      "sha": "",
+      "target_url": "",
+      "evidence": []
+    }
+  ]
+}
