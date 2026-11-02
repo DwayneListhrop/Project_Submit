@@ -3,6 +3,9 @@ on:
   pull_request:
   push:
     branches: [main]
+  schedule:
+    # GitHub cron uses UTC; 02:00/14:00 UTC approximates 8 PM/8 AM CST (DST shifts one hour).
+    - cron: '0 2,14 * * *'
   workflow_dispatch:
     inputs:
       target_url:
