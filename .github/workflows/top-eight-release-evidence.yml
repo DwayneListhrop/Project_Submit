@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 jobs:
   evidence:
     runs-on: ubuntu-latest
@@ -16,12 +17,18 @@ jobs:
           node-version: '22'
       - name: Test registry and fail-closed evidence logic
         run: node --test tools/studio-hub-qa/release-gate.test.mjs
+      - name: Verify registered GitHub Actions evidence
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/studio-hub-qa/verify-github-evidence.mjs
       - name: Validate evidence registry (non-enforcing pilot)
         run: node tools/studio-hub-qa/release-gate.mjs
-      - name: Publish gate report
+      - name: Publish gate reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: top-eight-release-gate
-          path: tools/studio-hub-qa/release-gate-report.json
+          path: |
+            tools/studio-hub-qa/release-gate-report.json
+            tools/studio-hub-qa/github-evidence-report.json
           retention-days: 30
