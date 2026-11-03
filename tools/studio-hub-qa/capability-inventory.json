@@ -5,7 +5,7 @@
     "DwayneListhrop/Project_Submit",
     "dwayne-lis/d_builds"
   ],
-  "policy": "This registry records observable repository evidence, not absence of a feature in unexamined local files, unattached ZIPs, other branches, or deployed applications.",
+  "policy": "This registry records observable repository evidence, not absence of a feature in unexamined local files, unattached ZIPs, other branches, or deployed applications. Recovered artifact fingerprints identify inspected source bytes; they do not certify runtime behavior or external byte availability in CI.",
   "capabilities": [
     {
       "id": "studio-hub-registry",
@@ -66,16 +66,33 @@
     {
       "id": "visual-engine",
       "upgrade": "Reusable graphics/simulation engine",
-      "status": "unverified",
-      "evidence": [],
-      "next": "Locate and inspect Graphics Core source and version; avoid creating a replacement until source is recovered."
+      "status": "partially-verified",
+      "evidence": [
+        {
+          "type": "recovered-artifact",
+          "artifact_id": "graphics-core-v120",
+          "note": "Source recovered and inspected."
+        },
+        {
+          "type": "recovered-artifact",
+          "artifact_id": "graphics-kit-v120",
+          "note": "20 Node suites rerun successfully; browser certification remains open."
+        }
+      ],
+      "next": "Reuse V120 clock and model adapters. Run real browser/device checks before claiming release readiness."
     },
     {
       "id": "mastery-engine",
       "upgrade": "Shared adaptive mastery intelligence",
-      "status": "unverified",
-      "evidence": [],
-      "next": "Locate Learning Session Engine and mastery modules across recoverable artifacts; assess interoperability."
+      "status": "partially-verified",
+      "evidence": [
+        {
+          "type": "recovered-artifact",
+          "artifact_id": "learning-session-v8",
+          "note": "Existing bridge and reports recovered; evidence counting requires hardening."
+        }
+      ],
+      "next": "Preserve V8 event contract; validate allowed stage/type and boolean correctness, deduplicate events, and exclude teacher evidence before integrating app adapters."
     },
     {
       "id": "design-system",

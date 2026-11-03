@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "policy": "Recovery fingerprints document inspected bytes. CI validates references and metadata only; external artifact bytes and runtime release certification are not implied.",
+  "artifacts": [
+    {
+      "id": "graphics-core-v120",
+      "library_file_id": "libfile_9bac9caea2d0819186b993d4f7b56041",
+      "filename": "DBuilds_Shared_Graphics_Core_V120.html",
+      "sha256": "d47bd8d1b0f94247f341329a0270102c4726eecfeb7bed56132240c8ab9cd6fb",
+      "size_bytes": 2183633,
+      "inspected_at": "2026-11-02",
+      "observed_capabilities": [
+        "visual-engine"
+      ],
+      "source_observations": [
+        "Standalone source with embedded workbench and model gallery."
+      ],
+      "limitations": [
+        "Canvas projected 3D; not imported CAD/GLTF or a WebGL physics backend.",
+        "Browser layout, touch, Safari/iPad, audio and GPU checks remain unverified."
+      ]
+    },
+    {
+      "id": "graphics-kit-v120",
+      "library_file_id": "libfile_23b27d223f8081918cc17d3a8f3f731a",
+      "filename": "DBuilds_Graphics_Engine_V120_Developer_Kit.zip",
+      "sha256": "01e3897f25916bf505ef39661f2cbc0f5cd471a3f53ff5991b243c652f378e90",
+      "size_bytes": 3254855,
+      "inspected_at": "2026-11-02",
+      "observed_capabilities": [
+        "visual-engine"
+      ],
+      "source_observations": [
+        "DBuildsGraphics.createHostClock and getModelCatalog; source model adapters.",
+        "All 20 bundled Node regression suites rerun successfully during recovery."
+      ],
+      "limitations": [
+        "Node VM/simulated DOM/native Canvas checks are not browser certification.",
+        "Source bytes remain in the original artifact; CI checks manifest consistency, not those external bytes."
+      ]
+    },
+    {
+      "id": "learning-session-v8",
+      "library_file_id": "libfile_7fbddcf7779481918d9f93b57611feaa",
+      "filename": "OPEN_DBuilds_Learning_Session_Engine_V8.html",
+      "sha256": "8e93074bceb5c7ad956b1e996df4f85d4bd2724941652add35e0c87cb8fad9c8",
+      "size_bytes": 69863,
+      "inspected_at": "2026-11-02",
+      "observed_capabilities": [
+        "mastery-engine"
+      ],
+      "source_observations": [
+        "DBuildsSession, DBuildsPluginBridge, DBuildsJourney and DBuildsRegistry.",
+        "Existing JSON/CSV reports and cross-app event contract."
+      ],
+      "limitations": [
+        "Static source inspection only; browser execution not performed.",
+        "Unvalidated mastery-stage keys and truthy correctness can inflate mastery.",
+        "Bridge lacks event deduplication and teacher-mode exclusion; older atom/circuit steps can advance without assessment."
+      ]
+    }
+  ]
+}

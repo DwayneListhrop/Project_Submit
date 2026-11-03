@@ -12,3 +12,7 @@ fs.writeFileSync(path.join(out,'index.html'),normalized);
 fs.writeFileSync(path.join(out,'projects.json'),JSON.stringify(registry,null,2)+'\n');
 fs.writeFileSync(path.join(out,'preview-manifest.json'),JSON.stringify({name:'D_Builds Studio Hub',version:'V4',source_commit:process.env.GITHUB_SHA||null,created_at:new Date().toISOString(),project_count:registry.projects.length,mode:'staging-preview',release_approved:false},null,2)+'\n');
 console.log('Staged '+out+' with '+registry.projects.length+' ranked projects');
+
+for (const name of ['capability-inventory.json','recovered-artifacts.json','capability-audit-report.json']) {
+ fs.copyFileSync(path.join(root,name),path.join(out,name));
+}
