@@ -90,9 +90,14 @@
           "type": "recovered-artifact",
           "artifact_id": "learning-session-v8",
           "note": "Existing bridge and reports recovered; evidence counting requires hardening."
+        },
+        {
+          "type": "recovered-artifact",
+          "artifact_id": "learning-session-v8-1",
+          "note": "Scoring boundary hardened and source excerpts regression-tested; full app/browser validation and learning criteria remain open."
         }
       ],
-      "next": "Preserve V8 event contract; validate allowed stage/type and boolean correctness, deduplicate events, and exclude teacher evidence before integrating app adapters."
+      "next": "Integrate verified per-app adapters and evidence-based stage criteria; run full browser/device workflows before release certification."
     },
     {
       "id": "design-system",

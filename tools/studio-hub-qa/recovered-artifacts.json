@@ -57,6 +57,34 @@
         "Static source inspection only; browser execution not performed.",
         "Unvalidated mastery-stage keys and truthy correctness can inflate mastery.",
         "Bridge lacks event deduplication and teacher-mode exclusion; older atom/circuit steps can advance without assessment."
+      ],
+      "file_id": "file_0000000009c8822f829240a14f3a1edd",
+      "version_number": 0
+    },
+    {
+      "id": "learning-session-v8-1",
+      "filename": "OPEN_DBuilds_Learning_Session_Engine_V8.html",
+      "library_file_id": "libfile_7fbddcf7779481918d9f93b57611feaa",
+      "file_id": "file_00000000de44822fb4dcd7414eb51c13",
+      "version_number": 1,
+      "sha256": "0d5ed756356a2ff92122d8bf33d0c988e3b7b6f1d2fab1fd36241e28e87a761d",
+      "size_bytes": 75310,
+      "inspected_at": "2026-11-02",
+      "observed_capabilities": [
+        "mastery-engine"
+      ],
+      "source_observations": [
+        "Boolean correctness and known mastery-stage validation; source eventId deduplication; teacher/test evidence filtering.",
+        "Standalone source updated in place. Guard/runtime excerpts are regression-tested in this repository.",
+        "Evidence is rendered as text; unavailable browser storage no longer throws from persist().",
+        "20 focused event regression tests passed against both the full HTML source functions and extracted fixture; 34 combined Studio Hub tests passed locally."
+      ],
+      "limitations": [
+        "Real-browser startup/layout, touch, Safari/iPad, and full application interactions remain unverified.",
+        "Legacy events without eventId remain accepted and cannot be deduplicated.",
+        "The engine still trusts registered producers to verify learning criteria; source hardening is not proof of learning outcomes.",
+        "Historical imported scores are retained, not retroactively certified. Older non-motion activities still need evidence criteria improvements.",
+        "CI executes extracted guard/runtime source, not the full external HTML application."
       ]
     }
   ]

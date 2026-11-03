@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '22'
       - name: Test top-30 registry, dashboard and fail-closed release logic
-        run: node --test tools/studio-hub-qa/release-gate.test.mjs tools/studio-hub-qa/top30.test.mjs tools/studio-hub-qa/audit-capabilities.test.mjs
+        run: node --test tools/studio-hub-qa/release-gate.test.mjs tools/studio-hub-qa/top30.test.mjs tools/studio-hub-qa/audit-capabilities.test.mjs tools/studio-hub-qa/learning-event.test.cjs
       - name: Audit existing capabilities before proposing duplicate upgrades
         run: node tools/studio-hub-qa/audit-capabilities.mjs --write
       - name: Verify registered GitHub Actions evidence
