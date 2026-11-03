@@ -1,0 +1,46 @@
+name: Deploy Studio Hub V4 Cloudflare Preview
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: studio-hub-cloudflare-preview
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    environment: studio-hub-preview
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify preview configuration
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_PROJECT: ${{ vars.CLOUDFLARE_STUDIO_PREVIEW_PROJECT }}
+        run: |
+          test -n "$CF_TOKEN" || { echo "::error::Missing CLOUDFLARE_API_TOKEN"; exit 1; }
+          test -n "$CF_ACCOUNT" || { echo "::error::Missing CLOUDFLARE_ACCOUNT_ID"; exit 1; }
+          test -n "$CF_PROJECT" || { echo "::error::Missing CLOUDFLARE_STUDIO_PREVIEW_PROJECT"; exit 1; }
+          test "$CF_PROJECT" != "dbuilds-hub" || { echo "::error::Refusing production Pages project"; exit 1; }
+      - name: Validate full registry and preview build
+        run: |
+          node --test tools/studio-hub-qa/release-gate.test.mjs tools/studio-hub-qa/top30.test.mjs
+          node tools/studio-hub-qa/build-preview.mjs
+      - name: Upload to a separate Cloudflare Pages staging project
+        id: deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PROJECT_NAME: ${{ vars.CLOUDFLARE_STUDIO_PREVIEW_PROJECT }}
+        run: |
+          npx --yes wrangler@4 pages deploy dist/studio-hub-v4-preview --project-name "$PROJECT_NAME" --branch "studio-hub-v4-preview" 2>&1 | tee deploy.log
+      - name: Attach deploy log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: studio-hub-cloudflare-preview-deploy-log
+          path: deploy.log
+          retention-days: 14

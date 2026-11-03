@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const root=path.resolve('tools/studio-hub-qa');
+const out=path.resolve('dist/studio-hub-v4-preview');
+fs.mkdirSync(out,{recursive:true});
+const registry=JSON.parse(fs.readFileSync(path.join(root,'projects.json'),'utf8'));
+if(registry.schema_version!==2||registry.projects?.length!==30)throw Error('Invalid top-30 registry');
+const html=fs.readFileSync(path.join(root,'dashboard/index.html'),'utf8');
+const normalized=html.replace("fetch('../projects.json'","fetch('./projects.json'");
+if(!normalized.includes("fetch('./projects.json'"))throw Error('Dashboard registry path missing');
+fs.writeFileSync(path.join(out,'index.html'),normalized);
+fs.writeFileSync(path.join(out,'projects.json'),JSON.stringify(registry,null,2)+'\n');
+fs.writeFileSync(path.join(out,'preview-manifest.json'),JSON.stringify({name:'D_Builds Studio Hub',version:'V4',source_commit:process.env.GITHUB_SHA||null,created_at:new Date().toISOString(),project_count:registry.projects.length,mode:'staging-preview',release_approved:false},null,2)+'\n');
+console.log('Staged '+out+' with '+registry.projects.length+' ranked projects');
+
+for (const name of ['capability-inventory.json','recovered-artifacts.json','capability-audit-report.json']) {
+ fs.copyFileSync(path.join(root,name),path.join(out,name));
+}

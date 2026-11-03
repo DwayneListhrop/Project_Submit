@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-11-02",
+  "scope": [
+    "DwayneListhrop/Project_Submit",
+    "dwayne-lis/d_builds"
+  ],
+  "policy": "This registry records observable repository evidence, not absence of a feature in unexamined local files, unattached ZIPs, other branches, or deployed applications. Recovered artifact fingerprints identify inspected source bytes; they do not certify runtime behavior or external byte availability in CI.",
+  "capabilities": [
+    {
+      "id": "studio-hub-registry",
+      "upgrade": "Studio Hub canonical top-30 registry",
+      "status": "verified-present",
+      "evidence": [
+        {
+          "repo": "DwayneListhrop/Project_Submit",
+          "ref": "automation/top-eight-release-registry-v1",
+          "path": "tools/studio-hub-qa/projects.json",
+          "note": "Thirty ranked entries and source/provenance fields; most application release claims remain blocked"
+        }
+      ],
+      "next": "Extend existing registry with verified source commits and target URLs; do not rebuild."
+    },
+    {
+      "id": "automated-web-qa",
+      "upgrade": "Playwright and CI QA automation",
+      "status": "verified-present",
+      "evidence": [
+        {
+          "repo": "DwayneListhrop/Project_Submit",
+          "ref": "main",
+          "path": ".github/workflows/studio-hub-qa.yml",
+          "note": "Twice-daily scheduled Playwright and JSON report; XCTest opt-in"
+        }
+      ],
+      "next": "Add per-application browser targets and accessibility test coverage; preserve workflow."
+    },
+    {
+      "id": "release-certification",
+      "upgrade": "Evidence-based release gates",
+      "status": "partially-verified",
+      "evidence": [
+        {
+          "repo": "DwayneListhrop/Project_Submit",
+          "ref": "automation/top-eight-release-registry-v1",
+          "path": "tools/studio-hub-qa/release-gate.mjs",
+          "note": "Fail-closed gate implemented; all inventory releases currently blocked"
+        }
+      ],
+      "next": "Verify full immutable artifact and application-specific test evidence; do not mark ready from historical CI."
+    },
+    {
+      "id": "cloudflare-deployment",
+      "upgrade": "Cloudflare integration",
+      "status": "partially-verified",
+      "evidence": [
+        {
+          "repo": "dwayne-lis/d_builds",
+          "ref": "main",
+          "path": "hosting/dbuilds-cloudflare/wrangler.toml",
+          "note": "Deployment configuration and site sources exist; live production verification is separate"
+        }
+      ],
+      "next": "Verify deployment URLs, preview health and ownership before changing configuration."
+    },
+    {
+      "id": "visual-engine",
+      "upgrade": "Reusable graphics/simulation engine",
+      "status": "partially-verified",
+      "evidence": [
+        {
+          "type": "recovered-artifact",
+          "artifact_id": "graphics-core-v120",
+          "note": "Source recovered and inspected."
+        },
+        {
+          "type": "recovered-artifact",
+          "artifact_id": "graphics-kit-v120",
+          "note": "20 Node suites rerun successfully; browser certification remains open."
+        }
+      ],
+      "next": "Reuse V120 clock and model adapters. Run real browser/device checks before claiming release readiness."
+    },
+    {
+      "id": "mastery-engine",
+      "upgrade": "Shared adaptive mastery intelligence",
+      "status": "partially-verified",
+      "evidence": [
+        {
+          "type": "recovered-artifact",
+          "artifact_id": "learning-session-v8",
+          "note": "Existing bridge and reports recovered; evidence counting requires hardening."
+        },
+        {
+          "type": "recovered-artifact",
+          "artifact_id": "learning-session-v8-1",
+          "note": "Scoring boundary hardened and source excerpts regression-tested; full app/browser validation and learning criteria remain open."
+        }
+      ],
+      "next": "Integrate verified per-app adapters and evidence-based stage criteria; run full browser/device workflows before release certification."
+    },
+    {
+      "id": "design-system",
+      "upgrade": "Reusable cross-app design system",
+      "status": "unverified",
+      "evidence": [],
+      "next": "Compare existing CSS/SwiftUI component libraries and tokens before extraction."
+    },
+    {
+      "id": "teacher-evidence",
+      "upgrade": "Teacher dashboard and longitudinal evidence",
+      "status": "unverified",
+      "evidence": [],
+      "next": "Inspect actual education build artifacts and privacy model; separate local scoring from synchronized reporting."
+    },
+    {
+      "id": "voice-accessibility",
+      "upgrade": "Voice and accessibility suite",
+      "status": "unverified",
+      "evidence": [],
+      "next": "Inspect AI Visual Mastery, Repeat Listener and other shipped app sources."
+    },
+    {
+      "id": "native-tests",
+      "upgrade": "Per-app automated XCTest",
+      "status": "partially-verified",
+      "evidence": [
+        {
+          "repo": "DwayneListhrop/Project_Submit",
+          "ref": "main",
+          "path": ".github/workflows/studio-hub-qa.yml",
+          "note": "Native XCTest job exists but is manual opt-in and needs discoverable shared test scheme"
+        }
+      ],
+      "next": "Validate concrete Xcode schemes/devices and test results rather than claiming native release readiness."
+    },
+    {
+      "id": "ged-commerce",
+      "upgrade": "GED demo and commercial checkout",
+      "status": "partially-verified",
+      "evidence": [
+        {
+          "repo": "DwayneListhrop/Project_Submit",
+          "ref": "automation/top-eight-release-registry-v1",
+          "path": "tools/studio-hub-qa/projects.json",
+          "note": "Historical GED demo/checkout pilot workflow references only; no live paid checkout certified"
+        }
+      ],
+      "next": "Validate existing GED demo and disabled checkout branches before enabling billing."
+    },
+    {
+      "id": "commercial-case-studies",
+      "upgrade": "Flagship public case studies",
+      "status": "unverified",
+      "evidence": [],
+      "next": "Audit deployed demo URLs and documented performance evidence before publishing outcomes."
+    }
+  ]
+}

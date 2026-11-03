@@ -1,0 +1,684 @@
+{
+  "schema_version": 2,
+  "ranking_source": "DBuilds_Top_200_Build_Rankings_2026-10-31.xlsx",
+  "updated_at": "2026-11-02",
+  "projects": [
+    {
+      "rank": 1,
+      "id": "appforge",
+      "name": "AppForge Studio",
+      "category": "Developer & Productivity",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "dwayne-lis/d_builds",
+      "source": "hosting/dbuilds-cloudflare",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 2,
+      "id": "curriculum-architect",
+      "name": "Curriculum Architect / Teaching Curriculum Builder",
+      "category": "Education Platforms",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 3,
+      "id": "student-mastery-os",
+      "name": "Student Mastery OS",
+      "category": "Education Platforms",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 4,
+      "id": "caretaxi",
+      "name": "CareTaxi / Safe Route Transportation Operations",
+      "category": "Business & Operations",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "dwayne-lis/d_builds",
+      "source": "apps/caretaxi",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [
+        {
+          "run_id": 40641619943,
+          "workflow": "CareTaxi pilot verification",
+          "sha": "bd7f8f32",
+          "category": "pilot-verification",
+          "classification": "historical-only"
+        }
+      ],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 5,
+      "id": "warehouse",
+      "name": "Warehouse FlowOps",
+      "category": "Industry Simulations",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "dwayne-lis/d_builds",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [
+        {
+          "run_id": 40641304878,
+          "workflow": "Warehouse guided native build",
+          "sha": "34a6b734",
+          "category": "persistence-pilot",
+          "classification": "historical-only"
+        }
+      ],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 6,
+      "id": "ged-math",
+      "name": "GED Knowledge Builder / Sales Pilot",
+      "category": "Math & Test Prep",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "dwayne-lis/d_builds",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [
+        {
+          "run_id": 40640529884,
+          "workflow": "GED Math free demo",
+          "sha": "2e25020e",
+          "category": "functional-pilot",
+          "classification": "historical-only"
+        },
+        {
+          "run_id": 40640408231,
+          "workflow": "Commerce checkout tests",
+          "sha": "f9c04b82",
+          "category": "commerce-pilot",
+          "classification": "historical-only"
+        }
+      ],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 7,
+      "id": "atom-forge",
+      "name": "Atom Forge",
+      "category": "STEM & Science",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 8,
+      "id": "motioncraft",
+      "name": "MotionCraft Studio / Ball & Tray",
+      "category": "STEM & Science",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 9,
+      "id": "clinical-ops",
+      "name": "Clinical Ops / Lab Specimen Journey",
+      "category": "Industry Simulations",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 10,
+      "id": "statistics-investigation",
+      "name": "Statistics Investigation Studio",
+      "category": "Math & Test Prep",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 11,
+      "id": "swift-mastery",
+      "name": "Swift Mastery Studio",
+      "category": "Developer & Productivity",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 12,
+      "id": "repeat-listener",
+      "name": "Repeat Listener",
+      "category": "Developer & Productivity",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 13,
+      "id": "graphics-core",
+      "name": "D_Builds Shared Graphics Core",
+      "category": "Developer & Productivity",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 14,
+      "id": "solar-system",
+      "name": "Solar System & Seasons Lab",
+      "category": "STEM & Science",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 15,
+      "id": "stem-fluency",
+      "name": "STEM Fluency Studio / Learning Command Center",
+      "category": "STEM & Science",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 16,
+      "id": "ged-focus",
+      "name": "GED Math Focus Studio",
+      "category": "Math & Test Prep",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 17,
+      "id": "studio-hub",
+      "name": "D_Builds Studio Hub",
+      "category": "Developer & Productivity",
+      "kind": "platform",
+      "parent_id": "appforge",
+      "reconciliation": "Separate operational product, same platform family",
+      "repo": "DwayneListhrop/Project_Submit",
+      "source": "tools/studio-hub-qa",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [
+        {
+          "run_id": 41390738066,
+          "workflow": "Top Eight Release Evidence",
+          "sha": "e744816e",
+          "category": "qa-infrastructure",
+          "classification": "historical-only"
+        }
+      ],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 18,
+      "id": "industry-simulation-engine",
+      "name": "Industry Simulation Engine",
+      "category": "Industry Simulations",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 19,
+      "id": "physics-equations",
+      "name": "Physics 1 Equation Mastery",
+      "category": "STEM & Science",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 20,
+      "id": "ipc-work-power",
+      "name": "IPC Work & Power Studio",
+      "category": "STEM & Science",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 21,
+      "id": "equation-odyssey",
+      "name": "Equation Odyssey",
+      "category": "Games & Arcade",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 22,
+      "id": "algebra-functions",
+      "name": "Algebra 1 Functions Mastery Studio",
+      "category": "Math & Test Prep",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 23,
+      "id": "issl",
+      "name": "iPhone Sensor Scale Lab (ISSL)",
+      "category": "STEM & Science",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "dwayne-lis/d_builds",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [
+        {
+          "run_id": 40641328401,
+          "workflow": "ISSL native validation",
+          "sha": "3cc245be",
+          "category": "native-pilot",
+          "classification": "historical-only"
+        }
+      ],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 24,
+      "id": "caretaxi-driver",
+      "name": "CareTaxi Driver Scheduling App",
+      "category": "Business & Operations",
+      "kind": "module",
+      "parent_id": "caretaxi",
+      "reconciliation": "Child workflow; do not count as independently certified product",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 25,
+      "id": "ministry-flow",
+      "name": "Ministry Flow / Covenant Men",
+      "category": "Faith & Community",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 26,
+      "id": "memory-palace",
+      "name": "Memory Palace STEM House",
+      "category": "Games & Arcade",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 27,
+      "id": "steelpan",
+      "name": "Steelpan Studio",
+      "category": "Music & Media",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 28,
+      "id": "learning-lab",
+      "name": "D_Builds Learning Lab",
+      "category": "Education Platforms",
+      "kind": "project",
+      "parent_id": null,
+      "reconciliation": "Independent until evidence establishes otherwise",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 29,
+      "id": "intervention-dashboard",
+      "name": "Student Mastery & Intervention Dashboard",
+      "category": "Business & Operations",
+      "kind": "candidate-module",
+      "parent_id": "student-mastery-os",
+      "reconciliation": "Relationship tentative; retain separate rank",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    },
+    {
+      "rank": 30,
+      "id": "learning-session-engine",
+      "name": "Learning Session Engine",
+      "category": "Education Platforms",
+      "kind": "candidate-module",
+      "parent_id": "curriculum-architect",
+      "reconciliation": "Relationship tentative; retain separate rank",
+      "repo": "",
+      "source": "",
+      "sha": "",
+      "target_url": "",
+      "latest_version": {
+        "label": "",
+        "source": "unverified",
+        "artifact_sha256": ""
+      },
+      "evidence": [],
+      "observed_ci": [],
+      "release_status": "blocked"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+name: Top 30 Release Evidence
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test top-30 registry, dashboard and fail-closed release logic
+        run: node --test tools/studio-hub-qa/release-gate.test.mjs tools/studio-hub-qa/top30.test.mjs tools/studio-hub-qa/audit-capabilities.test.mjs tools/studio-hub-qa/learning-event.test.cjs
+      - name: Audit existing capabilities before proposing duplicate upgrades
+        run: node tools/studio-hub-qa/audit-capabilities.mjs --write
+      - name: Verify registered GitHub Actions evidence
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/studio-hub-qa/verify-github-evidence.mjs
+      - name: Verify historical CI run metadata
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/studio-hub-qa/historical-ci.mjs
+      - name: Validate evidence registry (non-enforcing pilot)
+        run: node tools/studio-hub-qa/release-gate.mjs
+      - name: Build distributable V4 preview
+        run: node tools/studio-hub-qa/build-preview.mjs
+      - name: Verify staged preview
+        run: node -e "const fs=require('fs'); const d='dist/studio-hub-v4-preview/'; const r=JSON.parse(fs.readFileSync(d+'projects.json')); const m=JSON.parse(fs.readFileSync(d+'preview-manifest.json')); if(r.projects.length!==30||m.release_approved!==false||!fs.readFileSync(d+'index.html','utf8').includes(\"fetch('./projects.json'\"))process.exit(1);"
+      - name: Upload standalone preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: studio-hub-v4-static-preview
+          path: dist/studio-hub-v4-preview/
+          retention-days: 30
+      - name: Publish gate reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: top-30-release-gate
+          path: |
+            tools/studio-hub-qa/release-gate-report.json
+            tools/studio-hub-qa/github-evidence-report.json
+            tools/studio-hub-qa/historical-ci-report.json
+            tools/studio-hub-qa/projects.json
+            tools/studio-hub-qa/recovered-artifacts.json
+            tools/studio-hub-qa/capability-inventory.json
+            tools/studio-hub-qa/capability-audit-report.json
+            tools/studio-hub-qa/dashboard/index.html
+          retention-days: 30
