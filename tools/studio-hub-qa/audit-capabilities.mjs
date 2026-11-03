@@ -15,5 +15,5 @@ for (const c of data.capabilities) {
 }
 const summary=Object.fromEntries([...valid].map(status=>[status,data.capabilities.filter(c=>c.status===status).length]));
 const report={schema_version:1,as_of:data.audit_date,scope:data.scope,limits:data.policy,summary,capabilities:data.capabilities};
-if(process.argv.includes('--write'))fs.writeFileSync(new URL('./capability-audit-report.json',import.meta.url),JSON.stringify(report,null,2)+'\\n');
+if(process.argv.includes('--write'))fs.writeFileSync(new URL('./capability-audit-report.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({audit:'passed',...summary,total:data.capabilities.length}));
