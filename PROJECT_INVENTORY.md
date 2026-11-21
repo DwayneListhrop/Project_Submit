@@ -25,3 +25,27 @@ Audit date: 2026-11-21. This is a **partial search-based inventory**, not a comp
 6. Review each proposed migration before any moves or deletions.
 
 **Safety:** Never commit secrets, tokens, signing certificates or build outputs. Do not claim the Studio Hub application is connected yet.
+
+## Verified repository-wide counts (2026-11-21)
+- `Project_Submit` main: **14 tracked files**, **7 directory entries**; recursive Git tree response `truncated=false`.
+- `d_builds` main: **77 tracked files**, **33 directory entries**; recursive Git tree response `truncated=false`.
+- Across both repositories: **91 tracked files** and **40 directory entries**.
+- Cross-repository Git blob SHA comparison: **0 exact matching files**. Similar apps or changed versions may still overlap.
+- Project_Submit extension counts: 2 HTML, 4 MJS, 3 Markdown, 2 JSON, 1 JSX, 1 CSS, 1 YAML.
+- These counts exclude history, branches other than main, untracked local files, and repositories not accessible through the two connected accounts.
+
+## Verified file list (Project_Submit)
+- `.github/workflows/studio-hub-qa.yml`
+- `PROJECT_INVENTORY.md`
+- `ScriptureBridge_BookSite_SingleHTML_WithKeyboards_Themes.html`
+- `portfolio-platform/README.md`
+- `portfolio-platform/index.html`
+- `portfolio-platform/package.json`
+- `portfolio-platform/src/main.jsx`
+- `portfolio-platform/src/styles.css`
+- `tools/studio-hub-qa/README.md`
+- `tools/studio-hub-qa/package.json`
+- `tools/studio-hub-qa/playwright.config.mjs`
+- `tools/studio-hub-qa/report.mjs`
+- `tools/studio-hub-qa/tests/portfolio.spec.mjs`
+- `tools/studio-hub-qa/tests/smoke.spec.mjs`
