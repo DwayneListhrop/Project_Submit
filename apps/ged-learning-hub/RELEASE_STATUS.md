@@ -6,7 +6,7 @@ This is a single-user, browser-local release candidate. Teacher tools change pre
 
 - Empty portfolio on first run, with no historical learner fixtures.
 - Restore validates schema, nested collections, record IDs, scores, attachment types and references, and size limits before review.
-- Restore requires explicit replacement and learner-code confirmation. New attachments use fresh IDs. A local journal plus copy-on-write commit preserves the old portfolio before commit and the new portfolio after commit; reload resumes cleanup. Original localStorage key and IndexedDB files store remain compatible.
+- Restore requires explicit replacement and learner-code confirmation. New attachments use fresh IDs. A local journal plus copy-on-write commit preserves the old portfolio before commit and the new portfolio after commit; reload resumes cleanup. The original localStorage key, database name and files store remain unchanged. Legacy Blob attachments remain readable; new records add `storageEncoding: arraybuffer-v1` and `blobBytes` for portable WebKit persistence, with Blob reconstruction on read. JSON backup format stays unchanged.
 - Failed attachment exports stop instead of reporting an incomplete backup as complete.
 - CSV formula neutralization applies to both export paths. Attachment display names remove path separators and control characters.
 - Completed sessions are idempotent. Scores are recomputed from selected answers; invalid choices are ignored. Guided/game/external evidence cannot verify progression. Limited banks or repeated item prompts cannot qualify an independent set; imported V78/V2 independence remains unverified.
