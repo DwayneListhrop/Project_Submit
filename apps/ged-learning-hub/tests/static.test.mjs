@@ -13,7 +13,7 @@ test('core learning modules exist',()=>{
 });
 test('game and independent evidence paths remain distinct',()=>{
   assert.match(app,/q\.mode==='game'\?'game':'guided'/);
-  assert.match(app,/verified\?'independent'/);
+  assert.match(app,/q\.mode==='independent'\?'independent'/);
 });
 test('no embedded private images or screenshot-derived baseline',()=>{
   assert.doesNotMatch(app,/data:image\/png;base64,/);

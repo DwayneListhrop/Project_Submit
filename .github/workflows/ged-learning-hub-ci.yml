@@ -3,12 +3,15 @@ on:
   pull_request:
     paths:
       - 'apps/ged-learning-hub/**'
+      - '.github/workflows/ged-learning-hub-ci.yml'
   push:
     paths:
       - 'apps/ged-learning-hub/**'
+      - '.github/workflows/ged-learning-hub-ci.yml'
 jobs:
   static-release-checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
     defaults:
@@ -19,5 +22,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm audit --omit=dev --audit-level=moderate
       - run: npm test
       - run: npm run lint:html
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run test:browser
+      - name: Upload synthetic browser evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ged-release-browser-failures
+          path: apps/ged-learning-hub/test-results/
+          retention-days: 7
